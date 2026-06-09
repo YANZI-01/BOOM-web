@@ -1,0 +1,6 @@
+{
+  "name": "BOOM ONE - 官方网站",
+  "description": "BOOM ONE: 您的全天候、决策型 AI COACH。灵活无感佩戴，16Hz高频连续采集，掌握最优恢复与训练节奏。Explore Within. Break Beyond.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
