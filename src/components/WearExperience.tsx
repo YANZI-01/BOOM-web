@@ -82,7 +82,7 @@ export function WearExperience() {
             viewport={{ once: true }}
             className="text-gray-500 font-display text-sm md:text-base mb-4 font-bold tracking-[0.2em] uppercase"
           >
-            01 // {t('INVISIBLE FIT', 'INVISIBLE FIT')}
+            02 // {t('INVISIBLE FIT', 'INVISIBLE FIT')}
           </motion.h3>
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
@@ -91,9 +91,9 @@ export function WearExperience() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-6xl font-bold mb-6 font-display tracking-tight text-black"
           >
-            {t('忘记它的存在，', 'Forget its presence, ')}
+            {t('忘记设备的存在，', "Forget the equipment's presence, ")}
             <br className="md:hidden" />
-            {t('才能感受真正的自由。', 'to truly feel freedom.')}
+            {t('专注身体的声音。', "focus on the body's voice.")}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 30 }}
@@ -102,7 +102,7 @@ export function WearExperience() {
             transition={{ delay: 0.2 }}
             className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto font-medium leading-relaxed"
           >
-            {t('BOOM ONE 采用无屏幕、超轻量化设计，让你专注于每一次呼吸、每一次发力与每一个突破瞬间。无论是胸带还是臂带，它都能柔和贴合并随身体极致律动，彻底解除传统设备的佩戴束缚。', 'BOOM ONE features a screen-free, ultra-lightweight design, allowing you to focus on every breath and breakthrough moment. It softly adheres and rhythms with your body.')}
+            {t('BOOM ONE 采用无屏幕、超轻量化设计，以近乎无感的方式融入训练与生活。没有打扰，没有负担，只有身体、运动与持续进步。', 'BOOM ONE adopts a screen-free, ultra-lightweight design, seamlessly integrating into training and life in an almost imperceptible way. No interruptions, no burdens, only the body, movement, and continuous progress.')}
           </motion.p>
         </div>
 

@@ -49,7 +49,7 @@ export function TargetAudience() {
             viewport={{ once: true }}
             className="text-boom-green font-display text-xl mb-4 font-medium tracking-wide"
           >
-            05 // FOR SERIOUS ATHLETES
+            01 // FOR SERIOUS ATHLETES
           </motion.h3>
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
@@ -66,9 +66,9 @@ export function TargetAudience() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-boom-text-dim text-lg mt-6 max-w-2xl"
+            className="text-boom-text-dim text-lg mt-6 max-w-2xl whitespace-pre-line"
           >
-            {t('他们相信长期主义，尊重身体规律。在持续的训练与挑战中，追求稳定的进步与突破。', 'They believe in long-termism and respect their body\'s laws. In continuous training and challenges, they seek steady progress and breakthroughs.')}
+            {t('他们尊重身体，相信长期主义。\n不迷信拼命，不依赖天赋。\n在训练与恢复的平衡中，在日复一日的积累里，持续成为更好的自己。', 'They respect their bodies and believe in long-termism. Neither blindly pushing hard, nor relying solely on talent. In the balance of training and recovery, and over days of accumulation, they continuously become better versions of themselves.')}
           </motion.p>
         </div>
 

@@ -130,7 +130,7 @@ export function ProductShowcase() {
             
             <div className="md:absolute md:left-[calc(50%+30px)] md:top-1/2 md:-translate-y-1/2 mb-8 md:mb-0 text-center md:text-left">
               <div className="stagger-line text-4xl md:text-6xl lg:text-7xl font-bold font-display tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 drop-shadow-2xl md:whitespace-nowrap">
-                {t('更在于洞察', 'It\'s about insight.')}
+                {t('更在于决策', 'It\'s about decision.')}
               </div>
             </div>
         </div>

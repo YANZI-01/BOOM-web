@@ -10,18 +10,18 @@ export function Footer() {
             <div className="flex items-center justify-center md:justify-start gap-3 mb-6">
               <span translate="no" className="font-display font-bold text-lg tracking-widest text-white">BOOM</span>
             </div>
-            <p className="text-boom-text-dim text-sm max-w-xs mx-auto md:mx-0">
-               {t('探索向内，突破向外。我们服务于所有耐力运动的严肃运动者，为您打造一整套以教练思维为核心的全天候体系。', 'Explore within. Break beyond. We serve all serious endurance athletes, building a 24/7 coaching-centric ecosystem for you.')}
+            <p className="text-boom-text-dim text-sm max-w-[330px] mx-auto md:mx-0 whitespace-pre-line">
+               {t('向内探索，向外突破。\n为每一位追求卓越的耐力运动者而生。BOOM 将顶级教练团队的思维融入全天候 AI Coach，让科学训练与精准恢复成为持续进步的底层能力。', 'Explore inward, break outward. Built for every endurance athlete striving for excellence. BOOM integrates the mindset of top coaching teams into a 24/7 AI Coach, making scientific training and precise recovery the foundational capability for continuous progress.')}
             </p>
          </div>
          
          <div>
             <h4 className="text-white font-bold mb-4 font-display">{t('产品特征', 'Product Features')}</h4>
             <ul className="space-y-2 text-sm text-boom-text-dim">
-              <li>{t('续航一周 7 Days Battery', '7 Days Battery')}</li>
-              <li>{t('16Hz 超高频采集', '16Hz Ultra-High Frequency')}</li>
+              <li>{t('全天候 AI Coach', '24/7 AI Coach')}</li>
+              <li>{t('超量恢复识别', 'Supercompensation Recognition')}</li>
+              <li>{t('16Hz 高频连续采集', '16Hz High-Freq Continuous Sampling')}</li>
               <li>{t('灵活无感佩戴', 'Invisible Fit')}</li>
-              <li>{t('全天候动态判定', '24/7 Dynamic Assessment')}</li>
             </ul>
          </div>
 

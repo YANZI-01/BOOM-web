@@ -19,7 +19,7 @@ export function PrecisionData() {
               viewport={{ once: true }}
               className="text-boom-green font-display text-xl mb-4 font-medium tracking-wide"
             >
-              02 // 16HZ EXTREME PRECISION
+              03 // 16HZ EXTREME PRECISION
             </motion.h3>
             <motion.h2 
               initial={{ opacity: 0, y: 30 }}
@@ -37,7 +37,7 @@ export function PrecisionData() {
               transition={{ delay: 0.2 }}
               className="text-boom-text-dim text-lg max-w-2xl mx-auto drop-shadow-lg bg-black/40 py-2 px-4 rounded-full inline-block backdrop-blur-sm"
             >
-              <span className="text-white font-bold">{t('业内唯一', 'The industry\'s only')}</span>{t('的 16Hz/s 高频连续精准采集。为你构建毫无缝隙的数据真理。', ' 16Hz/s continuous high-frequency precision sampling, building a seamless truth of your data.')}
+              {t('身体时刻都在变化。BOOM ONE 以 16Hz 高频连续采集，记录那些稍纵即逝却至关重要的信号。', 'The body is constantly changing. BOOM ONE uses 16Hz high-frequency continuous sampling to record fleeting yet crucial signals.')}
             </motion.p>
           </div>
         </div>
@@ -125,11 +125,11 @@ export function PrecisionData() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 z-10 relative">
           {[
-            { label: t('心率 HR', 'Heart Rate (HR)'), val: t('反映心脏健康与运动强度。', 'Reflects heart health and workout intensity.') },
-            { label: t('心率变异性 HRV', 'HRV'), val: t('自主神经状态的关键指标。', 'Key autonomic nervous system indicator.') },
-            { label: t('压力水平 Stress', 'Stress Level'), val: t('综合评估身心压力与应激反应。', 'Comprehensive assessment of physical and mental stress.') },
-            { label: t('血氧饱和度 SpO₂', 'Blood Oxygen SpO₂'), val: t('反映呼吸与代谢状态。', 'Reflects respiratory and metabolic status.') },
-            { label: t('睡眠质量 Sleep', 'Sleep Quality'), val: t('评估睡眠恢复效果。', 'Evaluates sleep recovery effects.') }
+            { label: t('心率 HR', 'Heart Rate (HR)'), val: t('了解身体负荷与运动强度变化。', 'Understand changes in body load and exercise intensity.') },
+            { label: t('心率变异性 HRV', 'HRV'), val: t('洞察恢复状态与自主神经平衡。', 'Insight into recovery status and autonomic balance.') },
+            { label: t('压力水平 Stress', 'Stress Level'), val: t('识别压力累积与身体应激反应。', 'Identify stress accumulation and body stress response.') },
+            { label: t('血氧饱和度 SpO₂', 'Blood Oxygen SpO₂'), val: t('观察氧气利用与身体供氧情况。', 'Observe oxygen utilization and body oxygen supply.') },
+            { label: t('睡眠质量 Sleep', 'Sleep Quality'), val: t('评估夜间恢复与身体修复过程。', 'Evaluate nocturnal recovery and body repair processes.') }
           ].map((stat, i) => (
             <motion.div 
                initial={{ opacity: 0, y: 30 }}

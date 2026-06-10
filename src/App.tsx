@@ -19,12 +19,12 @@ export default function App() {
           <Navbar />
           <main>
             <Hero />
+            <TargetAudience />
             <ProductShowcase />
             <WearExperience />
             <PrecisionData />
             <RecoveryAlgorithm />
             <AICoachTimeline />
-            <TargetAudience />
           </main>
           <Footer />
         </div>

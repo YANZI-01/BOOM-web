@@ -18,34 +18,34 @@ export function AICoachTimeline() {
   const timelineData = [
     {
       icon: <Coffee className="w-6 h-6 text-boom-green" />,
-      time: t("07:00 AM - 觉醒时刻", "07:00 AM - Awakening"),
+      time: t("07:00 AM - 醒来时刻", "07:00 AM - Wake Up Time"),
       title: t("睡眠与恢复综合评估", "Comprehensive Sleep & Recovery Evaluation"),
-      desc: t("AI Coach 判断昨夜睡眠深度与恢复情况。如果系统判断你尚未完全恢复，会自动建议你今天降低训练强度，或进行灵活性训练，而不是盲目冲刺突破。", "AI Coach evaluates last night's sleep depth and recovery. If you haven't fully recovered, it suggests lowering today's training intensity instead of pushing blindly."),
-      highlight: t("“昨夜慢波睡眠偏少，建议今日将训练心率区间控制在 Zone 2。”", "\"Slow-wave sleep was low last night, suggested target HR is Zone 2 today.\""),
+      desc: t("睡眠不是一天的结束，而是下一次决策的开始。AI Coach 基于睡眠、恢复、负荷与压力状态，持续理解身体变化，并随着身体状态的变化实时更新建议。", "Sleep isn't the end of a day, but the beginning of the next decision. AI Coach continuously understands body changes based on sleep, recovery, load, and stress states, and updates suggestions in real time as your body state changes."),
+      highlight: t("“昨夜慢波睡眠偏少，当前恢复进程仍在继续。”", "\"Slow-wave sleep was low last night, the current recovery process is still continuing.\""),
       img: "/04-1.png"
     },
     {
       icon: <Activity className="w-6 h-6 text-[#ff6b00]" />,
       time: t("16:00 PM - 训练准备 & 负荷预警", "16:00 PM - Training Prep & Load Warning"),
-      title: t("动态调整平衡生活与训练", "Dynamically Balance Life & Training"),
-      desc: t("很多时候你的压力并非来自运动，而是工作。全天候 16Hz 监测让 AI Coach 能够捕捉到你的生活高负荷状态。如果早晨开会过于疲劳，AI 会在你下午准备高强度训练前，发出适度降级的预警。", "Stress often comes from work, not just sports. 24/7 16Hz monitoring lets AI Coach catch high-load life moments, issuing warnings and modifying afternoon high-intensity training plans accordingly."),
-      highlight: t("“目前神经压力指数极高，建议延迟2h原定的间歇跑计划。”", "\"Current neural stress index is extremely high, suggesting you delay the interval run by 2 hours.\""),
+      title: t("训练之外，也在影响训练", "Training beyond training"),
+      desc: t("很多时候，影响恢复的并不是训练本身，而是训练之外持续累积的压力。AI Coach 持续评估生活负荷、运动负荷与恢复状态之间的关系，并根据身体状态变化动态调整建议，帮助你避免在错误的时间进行高强度训练。", "Often, what affects recovery isn't the training itself, but the accumulated stress outside of training. AI Coach continuously evaluates the relationship between life load, training load, and recovery status, dynamically adjusting suggestions based on body state changes to help you avoid high-intensity training at the wrong time."),
+      highlight: t("“当前压力水平较高，建议将高强度训练推迟至晚间进行。”", "\"Current stress level is relatively high, suggesting you postpone high-intensity training to the evening.\""),
       img: "/04-2.png"
     },
     {
       icon: <Bell className="w-6 h-6 text-boom-green" />,
-      time: t("次日 19:00 PM - 进阶训练中", "Tmrw 19:00 PM - Advanced Training"),
+      time: t("19:00 PM - 进阶训练中", "19:00 PM - Advanced Training"),
       title: t("实时反馈的边界守护", "Real-time Boundary Defense"),
-      desc: t("在训练过程中，AI Coach 就是你的贴身顾问。当你的运动量已经达标，它会通过精准震动提醒；当判断出机体超负荷面临危险，它会立刻发出急促的干预警告。", "During training, AI Coach is your personal consultant. Once the target is reached, it reminds via haptic feedback; if it detects an overload risk, it issues a sharp intervention warning immediately."),
-      highlight: t("震动反馈：目标已达成，安全着陆。", "Haptic Feedback: Target reached, safe landing."),
+      desc: t("训练过程中，AI Coach 持续监测身体反应与负荷变化。当训练刺激达到目标时，它会提醒你及时结束训练；当风险逐渐累积时，它也会发出预警，帮助你避免过度训练。", "During training, AI Coach continuously monitors physical reactions and load changes. When the training stimulus reaches the target, it reminds you to end the training in time; when risks gradually accumulate, it also issues warnings to help you avoid overtraining."),
+      highlight: t("目标训练负荷已达成，建议结束本次训练。", "Target training load has been reached, it's recommended to end this training session."),
       img: "/04-3.png"
     },
     {
       icon: <Moon className="w-6 h-6 text-boom-green" />,
-      time: t("次日 22:00 PM - 科学重建", "Tmrw 22:00 PM - Scientific Reconstruction"),
-      title: t("全方位的恢复处方", "Comprehensive Recovery Prescription"),
-      desc: t("训练后的恢复同样关键。根据今天的消耗，AI Coach 会为你制定当晚的具体恢复计划：如何补水、需要摄入多少碳水与蛋白质、甚至指导何时入睡最为黄金。", "Post-training recovery is crucial. Based on today's caloric burn, AI Coach dictates tonight's recovery plan: hydration needs, macro intake, and even the golden hour to hit the bed."),
-      highlight: t("“今日消耗 1200 kcal，建议睡前加餐并尽早于 22:30 入睡以修复微损伤。”", "\"Burned 1200 kcal today, consider a pre-sleep snack and aim for 22:30 bed time.\""),
+      time: t("22:00 PM - 科学重建", "22:00 PM - Scientific Reconstruction"),
+      title: t("追踪身体的适应进程", "Tracking the body's adaptation process"),
+      desc: t("恢复不是一个瞬间，而是一个持续发生的过程。AI Coach 持续评估身体对训练刺激的适应情况，追踪恢复进展，并预测下一次高质量训练的最佳时机。", "Recovery is not an instant, but a continuous process. AI Coach continuously evaluates the body's adaptation to training stimuli, tracks recovery progress, and predicts the best timing for the next high-quality training session."),
+      highlight: t("当前身体处于恢复优先阶段，建议补充碳水与蛋白质，避免额外高负荷活动，并于 22:30 前进入睡眠状态。", "The current body is in a recovery-first phase, it's recommended to supplement carbohydrates and protein, avoid extra high-load activities, and enter a sleep state before 22:30."),
       img: "/04-4.png"
     }
   ];
@@ -60,7 +60,7 @@ export function AICoachTimeline() {
             viewport={{ once: true }}
             className="text-boom-green font-display text-xl mb-4 font-medium tracking-wide"
           >
-            04 // THE CORE: 24/7 AI COACH
+            05 // THE CORE: 24/7 AI COACH
           </motion.h3>
           <motion.h2 
              initial={{ opacity: 0, y: 30 }}
@@ -79,7 +79,7 @@ export function AICoachTimeline() {
             transition={{ delay: 0.2 }}
             className="text-boom-text-dim text-lg max-w-3xl mx-auto mt-6"
           >
-            {t('顶尖运动员的背后是一个包含主教练、康复师、营养师的庞大团队。现在，BOOM ONE 的 AI COACH 完美融合了这些职能。真正关注“生活负荷 + 运动负荷”与“睡眠 + 恢复”的绝对平衡。', 'Behind every elite athlete is a massive team including a head coach, trainer, and nutritionist. BOOM ONE\'s AI COACH perfectly merges these roles, truly focusing on the absolute balance of "life load + training load" and "sleep + recovery".')}
+            {t('把过去属于顶尖运动员的支持体系，带给每一个追求进步的人。BOOM ONE 将体能师、康复师和生理师等的核心决策能力融入 AI Coach，持续平衡生活负荷、运动负荷与恢复节奏，帮助你在正确的时间，做出正确的决定。', 'Bringing the support system of elite athletes to everyone striving for progress. BOOM ONE integrates the core decision-making capabilities of strength and conditioning coaches, physical therapists, and physiologists into AI Coach, continuously balancing life load, training load, and recovery rhythm, helping you make the right decisions at the right time.')}
           </motion.p>
         </div>
 
@@ -134,7 +134,7 @@ export function AICoachTimeline() {
                               <div className="relative z-10 text-left">
                                 <div className="flex justify-between items-start mb-2">
                                    <div className="text-lg md:text-xl font-display font-light text-white tracking-tight">
-                                      {index === 1 ? t('次日 19:00-21:00', 'Tmrw 19:00-21:00') : index === 2 ? t('后天 10:00-12:00', 'Day after Tmrw 10:00-12:00') : t('今天 16:00-18:00', 'Today 16:00-18:00')}
+                                      {index === 1 ? t('今日 19:00-21:00', 'Today 19:00-21:00') : index === 2 ? t('后天 10:00-12:00', 'Day after Tmrw 10:00-12:00') : t('今天 16:00-18:00', 'Today 16:00-18:00')}
                                    </div>
                                    <div className={`w-8 h-8 rounded-full ${index === 1 ? 'bg-[#ff6b00] shadow-[0_0_15px_rgba(255,107,0,0.5)]' : 'bg-boom-green shadow-[0_0_15px_rgba(163,230,53,0.5)]'} flex items-center justify-center shrink-0`}>
                                      <RefreshCw className="w-4 h-4 text-black animate-[spin_3s_linear_infinite]" strokeWidth={2.5} />

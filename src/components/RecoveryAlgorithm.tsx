@@ -14,7 +14,7 @@ export function RecoveryAlgorithm() {
           viewport={{ once: true }}
           className="text-boom-green font-display text-xl mb-4 font-medium tracking-wide"
         >
-          03 // TRUE RECOVERY™
+          04 // TRUE RECOVERY™
         </motion.h3>
         <motion.h2 
            initial={{ opacity: 0, y: 30 }}
@@ -47,9 +47,9 @@ export function RecoveryAlgorithm() {
            <GlassCard className="w-full h-full p-8 flex flex-col justify-between bg-boom-gray/30 border border-white/10 rounded-[40px] relative overflow-hidden">
              
              {/* Text Header (Now higher z-index to overlay image) */}
-             <div className="relative z-40 bg-black/40 p-4 rounded-2xl backdrop-blur-md inline-block self-start border border-white/5 mt-4 ml-4">
+             <div className="relative z-40 bg-black/40 p-4 rounded-b-2xl backdrop-blur-md inline-block self-start border border-t-0 border-white/5 -mt-8 ml-4">
                <h4 className="text-xl font-bold text-white mb-2">{t('恢复判断算法', 'Recovery Algorithm')}</h4>
-               <p className="text-boom-text-dim text-xs md:text-sm">{t('彻底告别冰冷机械的“静止分值”，', 'Say goodbye to cold mechanical "static scores", ')}<br />{t('BOOM ONE 跟踪你的体能变化周期。', 'BOOM ONE tracks your stamina cycles.')}</p>
+               <p className="text-boom-text-dim text-xs md:text-sm">{t('告别冰冷静止的分数。', 'Say goodbye to cold, static scores.')}<br />{t('你的身体不是一个数字，而是一个持续变化的过程。', 'Your body isn\'t a number, but a continuously changing process.')}</p>
              </div>
              
              {/* Left side character image (Frame_1.png) */}
@@ -57,10 +57,8 @@ export function RecoveryAlgorithm() {
                <img 
                  src="/Frame_1.png" 
                  alt="Athlete"
-                 className="absolute left-0 bottom-0 w-[80%] md:w-[60%] lg:w-[45%] h-full object-cover object-left-bottom opacity-90 mix-blend-screen"
+                 className="absolute left-0 bottom-0 w-[80%] md:w-[60%] lg:w-[45%] h-full object-cover object-left-bottom opacity-60 -translate-y-[11px]"
                />
-               {/* Fade out the right side of the image so it blends smoothly into the background, applied across the image width area */}
-               <div className="absolute left-0 bottom-0 w-[80%] md:w-[60%] lg:w-[45%] h-full bg-gradient-to-r from-transparent via-transparent to-[#1B1D1F]/90 z-20 mix-blend-normal"></div>
              </div>
 
              {/* Full Custom Supercompensation Curve Chart */}
@@ -68,79 +66,91 @@ export function RecoveryAlgorithm() {
                <svg viewBox="0 0 500 300" className="w-full h-full fill-none overflow-visible" preserveAspectRatio="none">
                   <defs>
                     <linearGradient id="curveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="rgba(255,255,255,0)" />
-                      <stop offset="30%" stopColor="rgba(255,255,255,0.4)" />
-                      <stop offset="45%" stopColor="rgba(255,255,255,0.9)" />
-                      <stop offset="64%" stopColor="#a3e635" /> {/* Peak is at 64% */}
-                      <stop offset="85%" stopColor="rgba(255,255,255,0.5)" />
-                      <stop offset="100%" stopColor="rgba(255,255,255,0.1)" />
+                      <stop offset="4%" stopColor="rgba(163,230,53,0.8)" />
+                      <stop offset="24%" stopColor="#a3e635" />
+                      <stop offset="68%" stopColor="#a3e635" />
+                      <stop offset="88%" stopColor="rgba(255,255,255,0.7)" />
+                      <stop offset="100%" stopColor="rgba(255,255,255,0.3)" />
                     </linearGradient>
-                    <linearGradient id="baselineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="rgba(255,255,255,0)" />
-                      <stop offset="30%" stopColor="rgba(255,255,255,0.15)" />
-                      <stop offset="100%" stopColor="rgba(255,255,255,0.15)" />
-                    </linearGradient>
+                    <pattern id="diagonalHatch" patternUnits="userSpaceOnUse" width="10" height="10">
+                      <line x1="-2" y1="12" x2="12" y2="-2" stroke="rgba(163,230,53,0.15)" strokeWidth="1" />
+                    </pattern>
                   </defs>
                   
-                  {/* Baseline */}
-                  <line x1="0" y1="180" x2="500" y2="180" stroke="url(#baselineGradient)" strokeDasharray="4,4" strokeWidth="1" />
-                  
-                  {/* Vertical Guide to Peak */}
-                  <line x1="320" y1="60" x2="320" y2="300" stroke="rgba(163,230,53,0.3)" strokeDasharray="3,3" strokeWidth="1" />
-                  {/* Horizontal Guide to Peak */}
-                  <line x1="0" y1="60" x2="320" y2="60" stroke="rgba(163,230,53,0.3)" strokeDasharray="3,3" strokeWidth="1" />
+                  {/* Axes */}
+                  <line x1="10" y1="290" x2="10" y2="10" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
+                  <polygon points="10,10 7,15 13,15" fill="rgba(255,255,255,0.4)" />
+                  <line x1="10" y1="290" x2="495" y2="290" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
+                  <polygon points="495,290 490,287 490,293" fill="rgba(255,255,255,0.4)" />
 
-                  {/* The Curve - Partially hidden by the left gradient fade but overlaying the image */}
-                  <path d="M -10,180
-                           C 40,180 80,260 140,260
-                           C 220,260 240,60 320,60
-                           C 380,60 420,180 510,180" 
+                  {/* Baseline */}
+                  <line x1="10" y1="180" x2="500" y2="180" stroke="rgba(255,255,255,0.3)" strokeDasharray="4,4" strokeWidth="1" />
+                  
+                  {/* Vertical Guides for the 4 parts */}
+                  <line x1="120" y1="60" x2="120" y2="290" stroke="rgba(255,255,255,0.2)" strokeDasharray="3,3" strokeWidth="1" />
+                  <line x1="240" y1="60" x2="240" y2="180" stroke="rgba(255,255,255,0.2)" strokeDasharray="3,3" strokeWidth="1" />
+                  <line x1="440" y1="60" x2="440" y2="180" stroke="rgba(255,255,255,0.2)" strokeDasharray="3,3" strokeWidth="1" />
+
+                  {/* Supercompensation Window Bracket */}
+                  <path d="M 240,40 L 240,35 L 440,35 L 440,40" stroke="rgba(163,230,53,0.8)" strokeWidth="1" fill="none" />
+                  <line x1="340" y1="35" x2="340" y2="30" stroke="rgba(163,230,53,0.8)" strokeWidth="1" />
+
+                  {/* Highlighted area under the peak */}
+                  <path d="M 240, 180 C 280, 155 300, 150 340, 150 C 380, 150 400, 155 440, 180 Z" fill="url(#diagonalHatch)" />
+
+                  {/* The Curve */}
+                  <path d="M 20, 180 C 60, 180 80, 270 120, 270 C 160, 270 200, 205 240, 180 C 280, 155 300, 150 340, 150 C 380, 150 400, 155 440, 180 C 480, 205 480, 230 500, 240" 
                         stroke="url(#curveGradient)" 
-                        className="drop-shadow-[0_0_6px_rgba(163,230,53,0.4)]" 
+                        className="drop-shadow-[0_0_8px_rgba(163,230,53,0.5)]" 
                         strokeWidth="3" 
                         style={{ mixBlendMode: 'screen' }}
                   />
+
+                  {/* Nodes Circles on Curve */}
+                  <circle cx="20" cy="180" r="4" fill="white" className="drop-shadow-[0_0_5px_rgba(255,255,255,1)]" />
+                  <circle cx="120" cy="270" r="4" fill="white" className="drop-shadow-[0_0_5px_rgba(255,255,255,1)]" />
+                  <circle cx="240" cy="180" r="4" fill="white" className="drop-shadow-[0_0_5px_rgba(255,255,255,1)]" />
+                  <circle cx="440" cy="180" r="4" fill="white" className="drop-shadow-[0_0_5px_rgba(255,255,255,1)]" />
                </svg>
 
-               {/* Nodes */}
-               <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-30">
-                 {/* Node 1: 高强度训练 */}
-                 <div className="absolute flex flex-col justify-center items-end" style={{ left: '12.5%', top: '73.3%', transform: 'translate(-50%, -50%)' }}>
-                    <div className="w-2.5 h-2.5 bg-white/50 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.5)] border border-black backdrop-blur-sm relative z-10 transition-opacity"></div>
-                    <div className="absolute top-4 left-4 w-28 text-left bg-black/40 p-1.5 rounded-lg backdrop-blur-md">
+               {/* HTML Text Labels */}
+               <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-30 font-sans">
+                 
+                 {/* Axes Labels */}
+                 <div className="absolute text-white/50 text-[10px] whitespace-nowrap" style={{ left: '2%', top: '2%', transform: 'translate(-10px, -20px)' }}>
+                    <div>{t('身体能力', 'Body Capability')}</div>
+                 </div>
+                 <div className="absolute text-white/50 text-[10px] whitespace-nowrap" style={{ right: '0%', top: '96.6%', transform: 'translate(-10px, 10px)' }}>
+                    {t('时间', 'Time')}
+                 </div>
+
+                 {/* Part 1: 高强度训练 */}
+                 <div className="absolute flex flex-col items-center" style={{ left: '4%', top: '60%', transform: 'translate(10px, 15px)' }}>
+                    <div className="w-24 text-left p-1.5 drop-shadow-md bg-black/40 backdrop-blur-md rounded-lg">
                        <div className="text-white text-xs md:text-sm font-bold mb-0.5">{t('高强度训练', 'Intense Training')}</div>
                        <div className="text-boom-text-dim text-[10px] leading-tight">{t('身体疲劳', 'Body Fatigue')}</div>
                     </div>
                  </div>
 
-                 {/* Node 2: 恢复开始 */}
-                 <div className="absolute flex flex-col items-center" style={{ left: '28%', top: '86.6%', transform: 'translate(-50%, -50%)' }}>
-                    <div className="w-3 h-3 bg-white/90 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.9)] border-2 border-black"></div>
-                    <div className="absolute top-4 left-2 w-28 text-left bg-black/40 p-1.5 rounded-lg backdrop-blur-md hidden md:block">
+                 {/* Part 2: 恢复开始 */}
+                 <div className="absolute flex flex-col items-center" style={{ left: '24%', top: '90%', transform: 'translate(-50%, 15px)' }}>
+                    <div className="w-28 text-center p-1.5 drop-shadow-md hidden md:block bg-black/40 backdrop-blur-md rounded-lg">
                        <div className="text-white text-xs md:text-sm font-bold mb-0.5">{t('恢复开始', 'Recovery Begins')}</div>
                        <div className="text-boom-text-dim text-[10px] leading-tight">{t('能量重建', 'Energy Rebuild')}</div>
                     </div>
                  </div>
 
-                 {/* Node 3: 超量恢复窗口 */}
-                 <div className="absolute flex flex-col items-center" style={{ left: '64%', top: '20%', transform: 'translate(-50%, -50%)' }}>
-                    <motion.div 
-                      animate={{ scale: [1, 1.3, 1], opacity: [0.8, 1, 0.8] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                      className="w-5 h-5 bg-boom-green/40 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(163,230,53,1)]"
-                    >
-                      <div className="w-2.5 h-2.5 bg-white rounded-full"></div>
-                    </motion.div>
-                    <div className="absolute bottom-8 left-3 w-40 text-left bg-black/40 p-2 rounded-lg backdrop-blur-md border border-boom-green/20">
-                       <div className="text-boom-green text-sm md:text-base font-bold mb-1">{t('超量恢复窗口', 'Supercompensation Window')}</div>
-                       <div className="text-boom-text-dim text-xs leading-tight drop-shadow-md">{t('身体能力', 'Body Capability')}<br/>{t('超越训练前水平', 'Exceeds Pre-training level')}</div>
+                 {/* Part 3: 超量恢复窗口 */}
+                 <div className="absolute flex flex-col items-center" style={{ left: '68%', top: '10%', transform: 'translate(-50%, -100%)' }}>
+                    <div className="w-40 text-center p-1.5">
+                       <div className="text-boom-green text-sm md:text-base font-bold mb-0.5">{t('超量恢复窗口', 'Supercompensation Window')}</div>
+                       <div className="text-boom-green/70 text-[10px] leading-tight hidden md:block">{t('身体能力', 'Body Capability')} {t('超越训练前水平', 'Exceeds Pre-training level')}</div>
                     </div>
                  </div>
 
-                 {/* Node 4: 错过窗口 */}
-                 <div className="absolute flex flex-col items-center" style={{ left: '92%', top: '60%', transform: 'translate(-50%, -50%)' }}>
-                    <div className="w-2 h-2 bg-white/70 rounded-full shadow-[0_0_5px_rgba(255,255,255,0.5)] border border-black"></div>
-                    <div className="absolute top-4 right-0 md:left-2 md:right-auto w-24 text-right md:text-left bg-black/40 p-1.5 rounded-lg backdrop-blur-md">
+                 {/* Part 4: 错过窗口 */}
+                 <div className="absolute flex flex-col items-center" style={{ left: '88%', top: '60%', transform: 'translate(10px, 15px)' }}>
+                    <div className="w-24 text-left p-1.5 drop-shadow-md hidden md:block bg-black/40 backdrop-blur-md rounded-lg">
                        <div className="text-white text-xs font-bold mb-0.5">{t('错过窗口', 'Missed Window')}</div>
                        <div className="text-boom-text-dim text-[10px] leading-tight">{t('适应下降', 'Adaptation Drops')}</div>
                     </div>
@@ -157,9 +167,9 @@ export function RecoveryAlgorithm() {
             className="space-y-12 lg:col-span-4"
          >
             <div>
-               <h4 className="text-2xl font-bold text-white mb-4">{t('比你更懂你的身体体感', 'Understands your body better than you do')}</h4>
+               <h4 className="text-2xl font-bold text-white mb-4">{t('比你更懂身体何时该前进', 'Understands better when your body should advance')}</h4>
                <p className="text-boom-text-dim leading-relaxed">
-                 {t('恢复不仅仅是“休息好了就行”，而是生理负荷与能量补充的动态平衡。BOOM ONE 的算法高度还原真实体感，当你的身体即将进入最强的“超量恢复（Supercompensation）”窗口时，立刻给予你精确指引。', 'Recovery is more than just "getting enough rest". It is the dynamic balance of physiological load and energy refueling. BOOM ONE accurately predicts your "Supercompensation" window and gives precise guidance right on time.')}
+                 {t('恢复不仅仅是休息，而是身体不断适应与成长的过程。BOOM ONE 持续追踪身体状态变化，识别超量恢复（Supercompensation）的最佳窗口，帮助你在正确的时间做出正确的训练与恢复决策。', 'Recovery is more than just resting; it is a process of your body constantly adapting and growing. BOOM ONE continuously tracks your body state changes, identifying the optimal Supercompensation window to help you make the right training and recovery decisions at the right time.')}
                </p>
             </div>
             
