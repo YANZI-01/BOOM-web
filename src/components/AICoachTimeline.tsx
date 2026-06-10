@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import { Bell, Activity, Moon, Coffee } from "lucide-react";
+import { Bell, Activity, Moon, Coffee, RefreshCw } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
 export function AICoachTimeline() {
@@ -22,31 +22,31 @@ export function AICoachTimeline() {
       title: t("睡眠与恢复综合评估", "Comprehensive Sleep & Recovery Evaluation"),
       desc: t("AI Coach 判断昨夜睡眠深度与恢复情况。如果系统判断你尚未完全恢复，会自动建议你今天降低训练强度，或进行灵活性训练，而不是盲目冲刺突破。", "AI Coach evaluates last night's sleep depth and recovery. If you haven't fully recovered, it suggests lowering today's training intensity instead of pushing blindly."),
       highlight: t("“昨夜慢波睡眠偏少，建议今日将训练心率区间控制在 Zone 2。”", "\"Slow-wave sleep was low last night, suggested target HR is Zone 2 today.\""),
-      img: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop"
+      img: "/04-1.png"
     },
     {
-      icon: <Activity className="w-6 h-6 text-boom-green" />,
-      time: t("14:00 PM - 训练准备 & 负荷预警", "14:00 PM - Training Prep & Load Warning"),
+      icon: <Activity className="w-6 h-6 text-[#ff6b00]" />,
+      time: t("16:00 PM - 训练准备 & 负荷预警", "16:00 PM - Training Prep & Load Warning"),
       title: t("动态调整平衡生活与训练", "Dynamically Balance Life & Training"),
       desc: t("很多时候你的压力并非来自运动，而是工作。全天候 16Hz 监测让 AI Coach 能够捕捉到你的生活高负荷状态。如果早晨开会过于疲劳，AI 会在你下午准备高强度训练前，发出适度降级的预警。", "Stress often comes from work, not just sports. 24/7 16Hz monitoring lets AI Coach catch high-load life moments, issuing warnings and modifying afternoon high-intensity training plans accordingly."),
-      highlight: t("“目前神经压力指数极高，存在受伤风险，建议取消原定的间歇跑计划。”", "\"Current neural stress index is extremely high, suggesting you cancel the interval run.\""),
-      img: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop"
+      highlight: t("“目前神经压力指数极高，建议延迟2h原定的间歇跑计划。”", "\"Current neural stress index is extremely high, suggesting you delay the interval run by 2 hours.\""),
+      img: "/04-2.png"
     },
     {
       icon: <Bell className="w-6 h-6 text-boom-green" />,
-      time: t("18:00 PM - 进阶训练中", "18:00 PM - Advanced Training"),
+      time: t("次日 19:00 PM - 进阶训练中", "Tmrw 19:00 PM - Advanced Training"),
       title: t("实时反馈的边界守护", "Real-time Boundary Defense"),
       desc: t("在训练过程中，AI Coach 就是你的贴身顾问。当你的运动量已经达标，它会通过精准震动提醒；当判断出机体超负荷面临危险，它会立刻发出急促的干预警告。", "During training, AI Coach is your personal consultant. Once the target is reached, it reminds via haptic feedback; if it detects an overload risk, it issues a sharp intervention warning immediately."),
       highlight: t("震动反馈：目标已达成，安全着陆。", "Haptic Feedback: Target reached, safe landing."),
-      img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop"
+      img: "/04-3.png"
     },
     {
       icon: <Moon className="w-6 h-6 text-boom-green" />,
-      time: t("22:00 PM - 科学重建", "22:00 PM - Scientific Reconstruction"),
+      time: t("次日 22:00 PM - 科学重建", "Tmrw 22:00 PM - Scientific Reconstruction"),
       title: t("全方位的恢复处方", "Comprehensive Recovery Prescription"),
       desc: t("训练后的恢复同样关键。根据今天的消耗，AI Coach 会为你制定当晚的具体恢复计划：如何补水、需要摄入多少碳水与蛋白质、甚至指导何时入睡最为黄金。", "Post-training recovery is crucial. Based on today's caloric burn, AI Coach dictates tonight's recovery plan: hydration needs, macro intake, and even the golden hour to hit the bed."),
       highlight: t("“今日消耗 1200 kcal，建议睡前加餐并尽早于 22:30 入睡以修复微损伤。”", "\"Burned 1200 kcal today, consider a pre-sleep snack and aim for 22:30 bed time.\""),
-      img: "https://images.unsplash.com/photo-1532029837206-abbe267fa205?q=80&w=2070&auto=format&fit=crop"
+      img: "/04-4.png"
     }
   ];
 
@@ -114,18 +114,41 @@ export function AICoachTimeline() {
                          viewport={{ once: true, margin: "-100px" }}
                          transition={{ duration: 0.8 }}
                       >
-                         <h5 className="text-boom-green font-display font-medium tracking-wide mb-2">{item.time}</h5>
+                         <h5 className={`font-display font-medium tracking-wide mb-2 ${index === 1 ? 'text-[#ff6b00]' : 'text-boom-green'}`}>{item.time}</h5>
                          <h3 className="text-white text-2xl md:text-3xl font-bold mb-4">{item.title}</h3>
                          <p className="text-boom-text-dim leading-relaxed mb-6">
                            {item.desc}
                          </p>
                          
-                         <div className={`p-4 rounded-xl border border-boom-green/30 bg-boom-green/5 text-sm font-medium text-white shadow-[0_0_15px_rgba(163,230,53,0.1)] inline-block ${isEven ? 'md:mr-0 md:ml-auto' : ''}`}>
-                            <span className="text-boom-green mr-2">✦</span>
+                         <div className={`p-4 rounded-xl border inline-block text-sm font-medium text-white ${isEven ? 'md:mr-0 md:ml-auto' : ''} ${index === 1 ? 'border-[#ff6b00]/30 bg-[#ff6b00]/5 shadow-[0_0_15px_rgba(255,107,0,0.1)]' : 'border-boom-green/30 bg-boom-green/5 shadow-[0_0_15px_rgba(163,230,53,0.1)]'}`}>
+                            <span className={`mr-2 ${index === 1 ? 'text-[#ff6b00]' : 'text-boom-green'}`}>✦</span>
                             {item.highlight}
                          </div>
 
-                         <div className={`mt-8 w-full max-w-sm rounded-2xl overflow-hidden border border-white/10 aspect-video ${isEven ? 'ml-auto' : ''}`}>
+                         {(index === 0 || index === 1 || index === 2) && (
+                            <div className={`mt-6 max-w-sm relative w-full rounded-[24px] bg-[#1a1a1e] py-4 px-6 overflow-hidden shadow-2xl border border-white/5 ${isEven ? 'md:mr-0 md:ml-auto' : ''}`}>
+                              {/* The Glowing Bottom Aura */}
+                              <div className={`absolute -bottom-[20%] left-[10%] right-[10%] h-1/2 ${index === 1 ? 'bg-[#ff6b00]/80' : 'bg-boom-green/80'} blur-[50px] z-0 pointer-events-none rounded-full`}></div>
+                            
+                              {/* Content */}
+                              <div className="relative z-10 text-left">
+                                <div className="flex justify-between items-start mb-2">
+                                   <div className="text-lg md:text-xl font-display font-light text-white tracking-tight">
+                                      {index === 1 ? t('次日 19:00-21:00', 'Tmrw 19:00-21:00') : index === 2 ? t('后天 10:00-12:00', 'Day after Tmrw 10:00-12:00') : t('今天 16:00-18:00', 'Today 16:00-18:00')}
+                                   </div>
+                                   <div className={`w-8 h-8 rounded-full ${index === 1 ? 'bg-[#ff6b00] shadow-[0_0_15px_rgba(255,107,0,0.5)]' : 'bg-boom-green shadow-[0_0_15px_rgba(163,230,53,0.5)]'} flex items-center justify-center shrink-0`}>
+                                     <RefreshCw className="w-4 h-4 text-black animate-[spin_3s_linear_infinite]" strokeWidth={2.5} />
+                                   </div>
+                                </div>
+                                
+                                <div className="text-white/60 text-sm tracking-widest font-light uppercase font-sans">
+                                  {t('超量恢复窗口期', 'Supercompensation Window')}
+                                </div>
+                              </div>
+                            </div>
+                         )}
+
+                         <div className={`mt-6 w-full max-w-sm rounded-2xl overflow-hidden border border-white/10 aspect-video ${isEven ? 'ml-auto' : ''}`}>
                              <img src={item.img} alt={item.title} className="w-full h-full object-cover opacity-80" />
                          </div>
                       </motion.div>

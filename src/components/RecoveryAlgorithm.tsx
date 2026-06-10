@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useLanguage } from "../context/LanguageContext";
 import { GlassCard } from "./GlassCard";
+import { RefreshCw } from "lucide-react";
 
 export function RecoveryAlgorithm() {
   const { t } = useLanguage();
@@ -171,12 +172,25 @@ export function RecoveryAlgorithm() {
                  <motion.div initial={{ width: 0 }} whileInView={{ width: '100%' }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.2 }} className="bg-boom-green h-full"></motion.div>
                </div>
                
-               <div className="flex items-center justify-between mt-6">
-                 <span className="text-white font-medium">{t('恢复时效预测', 'Recovery Time Prediction')}</span>
-                 <span className="text-boom-green">{t('实时更新', 'Real-time Updates')}</span>
-               </div>
-               <div className="w-full bg-white/10 h-1 rounded-full overflow-hidden">
-                 <motion.div initial={{ width: 0 }} whileInView={{ width: '80%' }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.4 }} className="bg-boom-green h-full"></motion.div>
+               <div className="mt-8 relative w-full rounded-[24px] bg-[#1a1a1e] py-4 px-6 overflow-hidden shadow-2xl border border-white/5">
+                 {/* The Glowing Bottom Aura */}
+                 <div className="absolute -bottom-[20%] left-[10%] right-[10%] h-1/2 bg-boom-green/80 blur-[50px] z-0 pointer-events-none rounded-full"></div>
+               
+                 {/* Content */}
+                 <div className="relative z-10">
+                   <div className="flex justify-between items-start mb-2">
+                      <div className="text-lg md:text-xl font-display font-light text-white tracking-tight">
+                         {t('次日 16:00-18:00', 'Tmrw 16:00-18:00')}
+                      </div>
+                      <div className="w-8 h-8 rounded-full bg-boom-green flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(163,230,53,0.5)]">
+                        <RefreshCw className="w-4 h-4 text-black animate-[spin_3s_linear_infinite]" strokeWidth={2.5} />
+                      </div>
+                   </div>
+                   
+                   <div className="text-white/60 text-sm tracking-widest font-light uppercase font-sans">
+                     {t('超量恢复窗口期', 'Supercompensation Window')}
+                   </div>
+                 </div>
                </div>
             </div>
          </motion.div>
