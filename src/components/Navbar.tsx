@@ -1,20 +1,22 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useLanguage } from "../context/LanguageContext";
-import { useState } from "react";
-import { X, Copy, Check } from "lucide-react";
+import React, { useState } from "react";
+import { X, Copy, Check, Menu } from "lucide-react";
+import { useLocation, Link } from "react-router-dom";
 
 export function Navbar() {
   const { t, language, setLanguage } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [copiedText, setCopiedText] = useState<string | null>(null);
+  const location = useLocation();
+  const currentPath = location.pathname;
 
-  const email = "hello@boomai.com.cn";
-
-  const handleCopy = async () => {
+  const handleCopy = async (text: string) => {
     try {
-      await navigator.clipboard.writeText(email);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      await navigator.clipboard.writeText(text);
+      setCopiedText(text);
+      setTimeout(() => setCopiedText(null), 2000);
     } catch (err) {
       console.error("Failed to copy", err);
     }
@@ -26,38 +28,118 @@ export function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="fixed w-full z-50 top-0 left-0 flex items-center justify-between px-8 py-4 backdrop-blur-md bg-black/50 border-b border-white/5"
+        className="fixed w-full z-50 top-0 left-0 flex items-center px-7 py-3 backdrop-blur-md bg-black/50 border-b border-white/5"
       >
-        <div className="flex items-center gap-3">
-          <span translate="no" className="font-display font-bold text-xl tracking-widest text-white">BOOM</span>
+        <div className="flex items-center gap-3 flex-1 flex-basis-0">
+          <Link to="/" className="font-display font-bold text-[18px] tracking-widest text-white" translate="no">BOOM</Link>
         </div>
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-boom-text-dim">
-          <a href="#overview" className="hover:text-white transition-colors">{t('概览', 'Overview')}</a>
-          <a href="#wear" className="hover:text-white transition-colors">{t('佩戴体验', 'Experience')}</a>
-          <a href="#precision" className="hover:text-white transition-colors">{t('超高精度', 'Precision')}</a>
-          <a href="#recovery" className="hover:text-white transition-colors">{t('恢复算法', 'Recovery')}</a>
-          <a href="#aicoach" className="text-boom-green hover:text-white transition-colors">{t('AI教练', 'AI COACH')}</a>
+        <div className="hidden md:flex items-center justify-center gap-7 text-[13px] flex-1 flex-basis-0">
+          <Link 
+            to="/"
+            className={`transition-all duration-300 relative py-1.5 tracking-wider ${
+              currentPath === "/" ? "text-boom-green font-medium text-glow" : "text-white/70 font-light hover:text-white"
+            }`}
+          >
+            {t('产品概览', 'Product Overview')}
+            {currentPath === "/" && (
+              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-boom-green shadow-[0_0_8px_#a3e635]" />
+            )}
+          </Link>
+          <Link 
+            to="/without-boom"
+            className={`transition-all duration-300 relative py-1.5 tracking-wider ${
+              currentPath === "/without-boom" ? "text-boom-green font-medium text-glow" : "text-white/70 font-light hover:text-white"
+            }`}
+          >
+            {t('没有BOOM', 'Without BOOM')}
+            {currentPath === "/without-boom" && (
+              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-boom-green shadow-[0_0_8px_#a3e635]" />
+            )}
+          </Link>
+          <Link 
+            to="/brand"
+            className={`transition-all duration-300 relative py-1.5 tracking-wider ${
+              currentPath === "/brand" ? "text-boom-green font-medium text-glow" : "text-white/70 font-light hover:text-white"
+            }`}
+          >
+            {t('关于我们', 'About Us')}
+            {currentPath === "/brand" && (
+              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-boom-green shadow-[0_0_8px_#a3e635]" />
+            )}
+          </Link>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-1 justify-end items-center gap-4">
           <button 
             onClick={() => setLanguage(language === 'zh' ? 'en' : 'zh')}
             translate="no"
-            className="text-xs font-bold border border-white/20 px-3 py-1 rounded-full hover:bg-white/10 transition-colors text-white"
+            className="text-[11px] font-bold border border-white/20 px-3 py-1 rounded-full hover:bg-white/10 transition-colors text-white"
           >
             {language === 'zh' ? 'EN' : '中文'}
           </button>
           <button 
             onClick={() => setIsModalOpen(true)}
-            className="bg-white text-black px-5 py-2 rounded-full font-bold text-sm tracking-wide hover:scale-105 transition-transform hidden sm:block"
+            className="bg-white text-black px-4 py-1.5 rounded-full font-bold text-[13px] tracking-wide hover:scale-105 transition-transform hidden sm:block"
           >
-            {t('立即体验', 'Experience Now')}
+            {t('立即探索', 'Explore Now')}
+          </button>
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden text-white"
+          >
+            {isMobileMenuOpen ? <X className="w-[22px] h-[22px]" /> : <Menu className="w-[22px] h-[22px]" />}
           </button>
         </div>
       </motion.nav>
 
       <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed top-[64px] left-0 w-full bg-black/95 backdrop-blur-xl border-b border-white/10 z-40 py-5 px-7 flex flex-col gap-5 md:hidden"
+          >
+            <Link 
+              to="/"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`text-lg transition-colors tracking-wider ${
+                currentPath === "/" ? "text-boom-green font-medium" : "text-white/70 font-light"
+              }`}
+            >
+              {t('产品概览', 'Product Overview')}
+            </Link>
+            <Link 
+              to="/without-boom"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`text-lg transition-colors tracking-wider ${
+                currentPath === "/without-boom" ? "text-boom-green font-medium" : "text-white/70 font-light"
+              }`}
+            >
+              {t('没有BOOM', 'Without BOOM')}
+            </Link>
+            <Link 
+              to="/brand"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`text-lg transition-colors tracking-wider ${
+                currentPath === "/brand" ? "text-boom-green font-medium" : "text-white/70 font-light"
+              }`}
+            >
+              {t('关于我们', 'About Us')}
+            </Link>
+            <button 
+              onClick={() => { setIsMobileMenuOpen(false); setIsModalOpen(true); }}
+              className="bg-white text-black px-5 py-3 rounded-full font-bold tracking-wide mt-4 w-full sm:hidden"
+            >
+              {t('立即探索', 'Explore Now')}
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
         {isModalOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div key="modal-overlay" className="fixed inset-0 z-[100] flex items-center justify-center p-4">
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -79,22 +161,44 @@ export function Navbar() {
                 <X className="w-5 h-5" />
               </button>
               
-              <div className="text-center mb-8 mt-2">
-                <h3 className="text-2xl font-bold text-white mb-3">{t('立即体验', 'Experience Now')}</h3>
-                <p className="text-boom-text-dim text-sm max-w-[280px] mx-auto leading-relaxed">
-                  {t('联系我们，报名成为我们的天使用户吧！', 'Contact us to sign up as an angel user!')}
-                </p>
+              <div className="text-center mb-6 mt-2">
+                <h3 className="text-xl font-bold text-white mb-2">{t('立即探索', 'Explore Now')}</h3>
               </div>
 
-              <div className="bg-black/50 border border-white/5 rounded-2xl p-6 flex flex-col items-center gap-5">
-                <span className="text-white font-mono text-lg font-medium tracking-wide">{email}</span>
-                <button 
-                  onClick={handleCopy}
-                  className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-colors"
-                >
-                  {copied ? <Check className="w-4 h-4 text-boom-green" /> : <Copy className="w-4 h-4" />}
-                  {copied ? t('已复制', 'Copied') : t('复制邮箱', 'Copy Email')}
-                </button>
+              <div className="space-y-4">
+                {/* user registration */}
+                <div className="bg-black/50 border border-white/5 rounded-2xl p-5 flex flex-col items-start gap-4">
+                  <p className="text-boom-text-dim text-sm leading-relaxed text-left">
+                    {t('立即体验产品，可联系我们：', 'To explore the product, please contact us:')}
+                  </p>
+                  <div className="flex w-full items-center justify-between gap-4">
+                    <span className="text-white font-mono text-base font-medium tracking-wide">hello@boomai.com.cn</span>
+                    <button 
+                      onClick={() => handleCopy('hello@boomai.com.cn')}
+                      className="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-xs font-medium transition-colors whitespace-nowrap"
+                    >
+                      {copiedText === 'hello@boomai.com.cn' ? <Check className="w-3.5 h-3.5 text-boom-green" /> : <Copy className="w-3.5 h-3.5" />}
+                      {copiedText === 'hello@boomai.com.cn' ? t('已复制', 'Copied') : t('复制', 'Copy')}
+                    </button>
+                  </div>
+                </div>
+
+                {/* investors */}
+                <div className="bg-black/50 border border-white/5 rounded-2xl p-5 flex flex-col items-start gap-4">
+                  <p className="text-boom-text-dim text-sm leading-relaxed text-left">
+                    {t('寻找商业合作，直联创始人：', 'For business cooperation, contact the founder directly:')}
+                  </p>
+                  <div className="flex w-full items-center justify-between gap-4">
+                    <span className="text-white font-mono text-base font-medium tracking-wide">founder@boomai.com.cn</span>
+                    <button 
+                      onClick={() => handleCopy('founder@boomai.com.cn')}
+                      className="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-xs font-medium transition-colors whitespace-nowrap"
+                    >
+                      {copiedText === 'founder@boomai.com.cn' ? <Check className="w-3.5 h-3.5 text-boom-green" /> : <Copy className="w-3.5 h-3.5" />}
+                      {copiedText === 'founder@boomai.com.cn' ? t('已复制', 'Copied') : t('复制', 'Copy')}
+                    </button>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -103,3 +207,4 @@ export function Navbar() {
     </>
   );
 }
+

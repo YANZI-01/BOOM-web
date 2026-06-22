@@ -35,15 +35,15 @@ export function Hero() {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="mb-8"
+          className="mb-4 md:mb-8"
         >
-          <div className="w-32 h-48 md:w-40 md:h-64 rounded-[60px] bg-boom-gray border border-white/10 mx-auto shadow-2xl relative flex items-center justify-center overflow-hidden">
+          <div className="w-24 h-36 sm:w-32 sm:h-48 md:w-40 md:h-64 rounded-[40px] md:rounded-[60px] bg-boom-gray border border-white/10 mx-auto shadow-2xl relative flex items-center justify-center overflow-hidden">
             {/* The Device mockup */}
             <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent"></div>
             <motion.div 
                animate={{ rotate: 360 }}
                transition={{ duration: 10, ease: "linear", repeat: Infinity }}
-               className="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-boom-green shadow-[0_0_30px_rgba(163,230,53,0.6)]"
+               className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full border-4 border-boom-green shadow-[0_0_30px_rgba(163,230,53,0.6)]"
             ></motion.div>
           </div>
         </motion.div>
@@ -52,7 +52,7 @@ export function Hero() {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="font-display font-bold text-6xl md:text-8xl tracking-tight mb-4"
+          className="font-display font-bold text-5xl sm:text-6xl md:text-8xl tracking-tight mb-2 md:mb-4"
         >
           BOOM ONE
         </motion.h1>
@@ -61,7 +61,7 @@ export function Hero() {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="text-xl md:text-3xl font-medium text-white mb-6"
+          className="text-lg sm:text-xl md:text-3xl font-medium text-white mb-4 md:mb-6 px-4"
         >
           {t('以“教练思维”为核心的全天候', 'A 24/7 Coaching-Centric ')}
           <span className="text-boom-green text-glow font-display">AI Coach</span>

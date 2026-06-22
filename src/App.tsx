@@ -1,34 +1,35 @@
 import { StrictMode } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
-import { SmoothScroll } from './components/SmoothScroll';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { ProductShowcase } from './components/ProductShowcase';
-import { WearExperience } from './components/WearExperience';
-import { PrecisionData } from './components/PrecisionData';
-import { RecoveryAlgorithm } from './components/RecoveryAlgorithm';
-import { AICoachTimeline } from './components/AICoachTimeline';
-import { TargetAudience } from './components/TargetAudience';
 import { Footer } from './components/Footer';
+import { ScrollToTop } from './components/ScrollToTop';
+import { ErrorBoundary } from './ErrorBoundary';
+
+// Pages
+import { ProductPage } from './pages/ProductPage';
+import { BrandPage } from './pages/BrandPage';
+import { WithoutBoomPage } from './pages/WithoutBoomPage';
 
 export default function App() {
   return (
     <LanguageProvider>
-      <SmoothScroll>
-        <div className="min-h-screen bg-black text-white font-sans selection:bg-boom-green selection:text-black">
-          <Navbar />
-          <main>
-            <Hero />
-            <TargetAudience />
-            <ProductShowcase />
-            <WearExperience />
-            <PrecisionData />
-            <RecoveryAlgorithm />
-            <AICoachTimeline />
-          </main>
-          <Footer />
-        </div>
-      </SmoothScroll>
+      <BrowserRouter>
+        <ScrollToTop />
+        <ErrorBoundary>
+          <div className="min-h-screen bg-black text-white font-sans selection:bg-boom-green selection:text-black">
+            <Navbar />
+            <main>
+              <Routes>
+                <Route path="/" element={<ProductPage />} />
+                <Route path="/without-boom" element={<WithoutBoomPage />} />
+                <Route path="/brand" element={<BrandPage />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </ErrorBoundary>
+      </BrowserRouter>
     </LanguageProvider>
   );
 }

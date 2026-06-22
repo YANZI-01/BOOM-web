@@ -51,14 +51,14 @@ export function AICoachTimeline() {
   ];
 
   return (
-    <section id="aicoach" className="py-32 bg-black relative" ref={containerRef}>
+    <section id="aicoach" className="py-20 md:py-32 bg-black relative" ref={containerRef}>
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="text-center mb-24">
+        <div className="text-center mb-16 md:mb-24">
           <motion.h3 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-boom-green font-display text-xl mb-4 font-medium tracking-wide"
+            className="text-boom-green font-display text-lg md:text-xl mb-4 font-medium tracking-wide"
           >
             05 // THE CORE: 24/7 AI COACH
           </motion.h3>
@@ -67,17 +67,17 @@ export function AICoachTimeline() {
              whileInView={{ opacity: 1, y: 0 }}
              viewport={{ once: true }}
              transition={{ delay: 0.1 }}
-             className="text-4xl md:text-6xl font-bold font-display leading-tight"
+             className="text-3xl sm:text-4xl md:text-6xl font-bold font-display leading-tight"
           >
-            {t('模拟顶级教练组的', 'A personalized 24/7 coach')}<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-boom-green to-white text-glow">{t('个性化全天陪练', 'simulating a top-tier team')}</span>
+            {t('像一支顶级教练团队，', 'Like a top-tier coaching team, ')}<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-boom-green to-white text-glow">{t('全天候为你提供个性化决策与建议', 'providing personalized decisions and guidance 24/7')}</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-boom-text-dim text-lg max-w-3xl mx-auto mt-6"
+            className="text-boom-text-dim text-base md:text-lg max-w-3xl mx-auto mt-4 md:mt-6"
           >
             {t('把过去属于顶尖运动员的支持体系，带给每一个追求进步的人。BOOM ONE 将体能师、康复师和生理师等的核心决策能力融入 AI Coach，持续平衡生活负荷、运动负荷与恢复节奏，帮助你在正确的时间，做出正确的决定。', 'Bringing the support system of elite athletes to everyone striving for progress. BOOM ONE integrates the core decision-making capabilities of strength and conditioning coaches, physical therapists, and physiologists into AI Coach, continuously balancing life load, training load, and recovery rhythm, helping you make the right decisions at the right time.')}
           </motion.p>
@@ -86,28 +86,28 @@ export function AICoachTimeline() {
         {/* Timeline Sequence */}
         <div className="relative">
            {/* Center Line Track */}
-           <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-white/10 transform md:-translate-x-1/2"></div>
+           <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] bg-white/10 transform md:-translate-x-1/2"></div>
            
            {/* Animated fill line */}
            <motion.div 
               style={{ height: heightProgress }}
-              className="absolute left-8 md:left-1/2 top-0 w-[2px] bg-boom-green transform md:-translate-x-1/2 box-glow shadow-boom-green origin-top"
+              className="absolute left-6 md:left-1/2 top-0 w-[2px] bg-boom-green transform md:-translate-x-1/2 box-glow shadow-boom-green origin-top"
            ></motion.div>
 
-           <div className="space-y-32">
+           <div className="space-y-20 md:space-y-32">
              {timelineData.map((item, index) => {
                const isEven = index % 2 === 0;
                return (
                  <div key={index} className="relative flex flex-col md:flex-row items-center w-full">
                     {/* Node */}
-                    <div className="absolute left-8 md:left-1/2 w-12 h-12 rounded-full bg-black border-2 border-white/20 transform md:-translate-x-1/2 -translate-x-[23px] flex items-center justify-center z-10 transition-colors duration-500 hover:border-boom-green group">
+                    <div className="absolute left-6 md:left-1/2 w-12 h-12 rounded-full bg-black border-2 border-white/20 transform md:-translate-x-1/2 -translate-x-1/2 flex items-center justify-center z-10 transition-colors duration-500 hover:border-boom-green group">
                        <div className="bg-boom-gray rounded-full p-2 group-hover:bg-boom-green/20 transition-colors">
                           {item.icon}
                        </div>
                     </div>
 
                     {/* Content Section (Left or Right) */}
-                    <div className={`w-full md:w-1/2 pl-20 md:px-16 ${isEven ? 'md:pr-16 md:pl-0 md:text-right' : 'md:pl-16 md:pr-0 md:ml-auto'}`}>
+                    <div className={`w-full md:w-1/2 pl-12 sm:pl-16 md:px-16 ${isEven ? 'md:pr-16 md:pl-0 md:text-right' : 'md:pl-16 md:pr-0 md:ml-auto'}`}>
                       <motion.div
                          initial={{ opacity: 0, x: isEven ? -50 : 50 }}
                          whileInView={{ opacity: 1, x: 0 }}
