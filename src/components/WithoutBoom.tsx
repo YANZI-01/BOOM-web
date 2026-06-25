@@ -15,6 +15,7 @@ export function WithoutBoom() {
   const [isHovering, setIsHovering] = useState(false);
   const lastUpdateTime = useRef<number>(0);
   const [activeCurve, setActiveCurve] = useState<'early' | 'optimal' | 'late' | 'none'>('optimal');
+  const [isWithoutBoomActive, setIsWithoutBoomActive] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -227,7 +228,7 @@ export function WithoutBoom() {
                         }}
                         className={`w-full h-full rounded-full text-xs font-mono transition-all duration-300 border shadow-lg hover:-translate-y-0.5 cursor-pointer flex items-center justify-center ${activeCurve === 'optimal' ? 'border-[#a3e635] text-[#a3e635] bg-[#a3e635]/20 shadow-lg shadow-[#a3e635]/20' : 'border-white/20 text-white/70 hover:text-[#a3e635] hover:border-[#a3e635]/50 hover:bg-white/5 bg-black/40 backdrop-blur-sm'}`}
                       >
-                        {t('恢复充分', 'Fully Recovered')}
+                        {t('最佳时机', 'Optimal Timing')}
                       </button>
                     </foreignObject>
                     
@@ -340,44 +341,54 @@ export function WithoutBoom() {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="group bg-[#0d0d0d] border border-white/5 rounded-3xl p-8 lg:p-12 relative overflow-hidden flex flex-col justify-start shadow-xl h-full cursor-default transition-all duration-500"
+            viewport={{ margin: "-30% 0px -30% 0px", amount: 0.5 }}
+            onViewportEnter={() => {
+              if (typeof window !== "undefined" && window.innerWidth < 1024) {
+                setIsWithoutBoomActive(true);
+              }
+            }}
+            onViewportLeave={() => {
+              if (typeof window !== "undefined" && window.innerWidth < 1024) {
+                setIsWithoutBoomActive(false);
+              }
+            }}
+            className={`group bg-[#0d0d0d] border border-white/5 rounded-3xl p-8 lg:p-12 relative overflow-hidden flex flex-col justify-start shadow-xl h-full cursor-default transition-all duration-500 ${isWithoutBoomActive ? 'is-active' : ''}`}
           >
             <div className="mb-10 text-left">
-              <h3 className="text-2xl font-medium text-white/40 group-hover:text-white transition-colors duration-500 mb-3">WITHOUT BOOM</h3>
-              <p className="text-white/30 group-hover:text-white/80 font-light leading-relaxed transition-colors duration-500">
+              <h3 className="text-2xl font-medium text-white/40 group-hover:text-white group-[.is-active]:text-white transition-colors duration-500 mb-3">WITHOUT BOOM</h3>
+              <p className="text-white/30 group-hover:text-white/80 group-[.is-active]:text-white/80 font-light leading-relaxed transition-colors duration-500">
                 {t('凭感觉练，容易错过最佳时机。过早会导致疲劳累积，过晚则错过适应窗口。', 'Training by feel, it is easy to miss the optimal window. Early training leads to fatigue, late training misses the adaptation window.')}
               </p>
             </div>
 
             {/* Inner Workflow Blocks - Inspired by Image 2 Left Card */}
             <div className="space-y-4">
-              <div className="bg-black/50 group-hover:bg-black rounded-2xl p-5 border border-white/5 backdrop-blur-sm transition-colors duration-500">
+              <div className="bg-black/50 group-hover:bg-black group-[.is-active]:bg-black rounded-2xl p-5 border border-white/5 backdrop-blur-sm transition-colors duration-500">
                 <div className="flex justify-between items-center mb-2">
                   <div className="flex items-center gap-2">
                     <AlertCircle className="w-4 h-4 text-[#f97316] transition-colors duration-500" />
                     <span className="font-medium text-sm text-[#f97316] transition-colors duration-500">过早刺激 (Too Early)</span>
                   </div>
-                  <div className="text-[10px] text-[#f97316] bg-[#f97316]/10 group-hover:bg-[#f97316]/15 border border-[#f97316]/20 px-2 py-1 rounded transition-colors duration-500">Error</div>
+                  <div className="text-[10px] text-[#f97316] bg-[#f97316]/10 group-hover:bg-[#f97316]/15 group-[.is-active]:bg-[#f97316]/15 border border-[#f97316]/20 px-2 py-1 rounded transition-colors duration-500">Error</div>
                 </div>
-                <p className="text-xs lg:text-sm text-white/30 group-hover:text-white/70 transition-colors duration-500">恢复不足，疲劳持续累积，增加受伤风险并降低训练表现。</p>
+                <p className="text-xs lg:text-sm text-white/30 group-hover:text-white/70 group-[.is-active]:text-white/70 transition-colors duration-500">恢复不足，疲劳持续累积，增加受伤风险并降低训练表现。</p>
               </div>
               
               <div className="flex justify-center -my-2 relative z-10">
-                <div className="w-[1px] h-6 bg-white/10 group-hover:bg-white/20 relative transition-colors duration-500">
-                  <div className="w-2 h-2 rounded-full border border-white/10 group-hover:border-white/30 bg-[#0a0a0a] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-colors duration-500"></div>
+                <div className="w-[1px] h-6 bg-white/10 group-hover:bg-white/20 group-[.is-active]:bg-white/20 relative transition-colors duration-500">
+                  <div className="w-2 h-2 rounded-full border border-white/10 group-hover:border-white/30 group-[.is-active]:border-white/30 bg-[#0a0a0a] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-colors duration-500"></div>
                 </div>
               </div>
 
-              <div className="bg-black/50 group-hover:bg-black rounded-2xl p-5 border border-white/5 backdrop-blur-sm transition-colors duration-500">
+              <div className="bg-black/50 group-hover:bg-black group-[.is-active]:bg-black rounded-2xl p-5 border border-white/5 backdrop-blur-sm transition-colors duration-500">
                 <div className="flex justify-between items-center mb-2">
                   <div className="flex items-center gap-2">
                     <Clock className="w-4 h-4 text-[#f97316] transition-colors duration-500" />
                     <span className="font-medium text-sm text-[#f97316] transition-colors duration-500">过晚刺激 (Too Late)</span>
                   </div>
-                  <div className="text-[10px] text-[#f97316] bg-[#f97316]/10 group-hover:bg-[#f97316]/15 border border-[#f97316]/20 px-2 py-1 rounded transition-colors duration-500">Missed</div>
+                  <div className="text-[10px] text-[#f97316] bg-[#f97316]/10 group-hover:bg-[#f97316]/15 group-[.is-active]:bg-[#f97316]/15 border border-[#f97316]/20 px-2 py-1 rounded transition-colors duration-500">Missed</div>
                 </div>
-                <p className="text-xs lg:text-sm text-white/30 group-hover:text-white/70 transition-colors duration-500">错过超量恢复窗口，身体已退回基线，训练效果大打折扣。</p>
+                <p className="text-xs lg:text-sm text-white/30 group-hover:text-white/70 group-[.is-active]:text-white/70 transition-colors duration-500">错过超量恢复窗口，身体已退回基线，训练效果大打折扣。</p>
               </div>
             </div>
           </motion.div>
@@ -455,10 +466,10 @@ export function WithoutBoom() {
             <div className="text-center w-full mx-auto px-4 pointer-events-none drop-shadow-xl" style={{ textShadow: '0 4px 30px rgba(0,0,0,1)' }}>
               <h3 className="text-boom-green font-display text-xl mb-4 font-medium tracking-wide uppercase">How Boom Works</h3>
               <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight mb-6">
-                {t('自由能恢复算法', 'Free Energy Algorithm')}
+                {t('自由能恢复判断算法', 'Free Energy Algorithm')}
               </h2>
               <p className="text-white/80 text-base md:text-lg max-w-2xl mx-auto font-light leading-relaxed">
-                {t('传统模型关注你', 'Traditional models focus on how much you ')}<span className="text-white font-medium">{t('消耗了多少', 'consumed')}</span>{t('，', ', ')}<br className="hidden md:block" />{t('而 BOOM 关注你', 'while BOOM focuses on how much you ')}<span className="text-[#a3e635] font-medium">{t('还剩多少', 'have left')}</span>{t('。', '.')}
+                {t('传统模型关注你', 'Traditional models focus on how much you ')}<span className="text-white font-medium">{t('消耗了多少', 'consumed')}</span>{t('，', ', ')}<br />{t('而 BOOM 关注你', 'while BOOM focuses on how much you ')}<span className="text-[#a3e635] font-medium">{t('还剩多少', 'have left')}</span>{t('。', '.')}
               </p>
             </div>
           </EnergyFlowCanvas>
@@ -487,7 +498,7 @@ export function WithoutBoom() {
                        {t('量化真实可用能量', 'Quantify True Available Energy')}
                     </h4>
                     <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
-                      {t('BOOM 将训练负荷、生理状态、睡眠质量与生活压力整合进统一框架，模拟身体能量的平衡，计算当前可直接调用的有效能量——', 'BOOM integrates training load, physiology, sleep, and stress into a unified framework to simulate energy balance and calculate directly available energy - ')}<strong className="text-white/80">{t('自由能', 'Free Energy')}</strong>{t('。', '.')}
+                      {t('BOOM 将训练负荷、恢复指标、生活疲劳与连续生理信号整合进统一框架，模拟人体能量供给、消耗、恢复与适应的动态过程，量化当前仍可直接支配的有效能量——', 'BOOM integrates training load, recovery indicators, lifestyle fatigue, and continuous physiological signals into a unified framework, simulating the dynamic processes of human energy supply, consumption, recovery, and adaptation, to quantify the effective energy still directly at your disposal - ')}<strong className="text-white/80">{t('自由能', 'Free Energy')}</strong>{t('。', '.')}
                     </p>
 
                     <div className="mt-auto pt-4 border-t border-white/5 group-hover:border-white/10 transition-colors">

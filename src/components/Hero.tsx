@@ -63,9 +63,8 @@ export function Hero() {
           transition={{ duration: 1, delay: 0.5 }}
           className="text-lg sm:text-xl md:text-3xl font-medium text-white mb-4 md:mb-6 px-4"
         >
-          {t('以“教练思维”为核心的全天候', 'A 24/7 Coaching-Centric ')}
-          <span className="text-boom-green text-glow font-display">AI Coach</span>
-          {t('系统', ' System')}
+          {t('全天候决策型', '24/7 Decision-Making ')}
+          <span className="text-boom-green text-glow font-display">AI COACH</span>
         </motion.h2>
 
         <motion.p 

@@ -28,7 +28,7 @@ export function AICoachTimeline() {
       icon: <Activity className="w-6 h-6 text-[#ff6b00]" />,
       time: t("16:00 PM - 训练准备 & 负荷预警", "16:00 PM - Training Prep & Load Warning"),
       title: t("训练之外，也在影响训练", "Training beyond training"),
-      desc: t("很多时候，影响恢复的并不是训练本身，而是训练之外持续累积的压力。AI Coach 持续评估生活负荷、运动负荷与恢复状态之间的关系，并根据身体状态变化动态调整建议，帮助你避免在错误的时间进行高强度训练。", "Often, what affects recovery isn't the training itself, but the accumulated stress outside of training. AI Coach continuously evaluates the relationship between life load, training load, and recovery status, dynamically adjusting suggestions based on body state changes to help you avoid high-intensity training at the wrong time."),
+      desc: t("很多时候，影响恢复的并不是训练本身，而是训练之外持续累积的压力。AICoach持续评估生活负荷、运动负荷与恢复状态之间的关系，并根据身体状态变化动态调整建议，帮助你避免在错误的时间进行高强度训练。", "Often, what affects recovery isn't the training itself, but the accumulated stress outside of training. AICoach continuously evaluates the relationship between life load, training load, and recovery status, dynamically adjusting suggestions based on body state changes to help you avoid high-intensity training at the wrong time."),
       highlight: t("“当前压力水平较高，建议将高强度训练推迟至晚间进行。”", "\"Current stress level is relatively high, suggesting you postpone high-intensity training to the evening.\""),
       img: "/04-2.png"
     },
@@ -46,7 +46,7 @@ export function AICoachTimeline() {
       title: t("追踪身体的适应进程", "Tracking the body's adaptation process"),
       desc: t("恢复不是一个瞬间，而是一个持续发生的过程。AI Coach 持续评估身体对训练刺激的适应情况，追踪恢复进展，并预测下一次高质量训练的最佳时机。", "Recovery is not an instant, but a continuous process. AI Coach continuously evaluates the body's adaptation to training stimuli, tracks recovery progress, and predicts the best timing for the next high-quality training session."),
       highlight: t("当前身体处于恢复优先阶段，建议补充碳水与蛋白质，避免额外高负荷活动，并于 22:30 前进入睡眠状态。", "The current body is in a recovery-first phase, it's recommended to supplement carbohydrates and protein, avoid extra high-load activities, and enter a sleep state before 22:30."),
-      img: "/04-4.png"
+      img: "/04－４-1.jpg"
     }
   ];
 

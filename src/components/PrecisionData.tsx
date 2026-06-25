@@ -61,7 +61,7 @@ export function PrecisionData() {
   return (
     <section
       id="precision"
-      className="pt-20 pb-10 md:pt-32 md:pb-16 relative bg-black overflow-hidden"
+      className="pt-20 pb-[50px] md:pt-32 md:pb-[50px] relative bg-black overflow-hidden"
     >
       {/* Artistic Page Background */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden flex flex-col justify-center items-center">
@@ -75,7 +75,7 @@ export function PrecisionData() {
         ></div>
 
         {/* Giant Text Decoration */}
-        <div className="absolute top-1/2 -translate-y-[60%] mt-[280px] w-full flex flex-col items-center justify-center opacity-40 select-none z-0">
+        <div className="absolute top-1/2 -translate-y-[60%] mt-[295px] w-full flex flex-col items-center justify-center opacity-40 select-none z-0">
           <h2
             className="text-[120px] md:text-[220px] lg:text-[250px] font-black font-display text-transparent leading-[0.8] tracking-tighter uppercase"
             style={{ WebkitTextStroke: "2px rgba(255,255,255,0.4)" }}
@@ -214,7 +214,7 @@ export function PrecisionData() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        <div className="flex flex-col md:flex-row md:justify-center items-center md:items-start gap-6 md:gap-6 z-10 relative mt-4 md:mt-[100px] pb-12 pt-8 min-h-auto md:min-h-[550px] lg:min-h-[640px]">
+        <div className="flex flex-col md:flex-row md:justify-center items-center md:items-start gap-6 md:gap-6 z-10 relative mt-4 md:mt-[100px] pb-0 pt-8 min-h-auto md:min-h-[450px] lg:min-h-[540px]">
           {[
             {
               label: t("心率 HR", "Heart Rate"),
@@ -224,7 +224,7 @@ export function PrecisionData() {
               ),
               bg: "/peidai 10.png",
               ui: (
-                <div className="absolute bottom-6 left-4 right-4 scale-[0.6] origin-bottom-left group-hover:scale-[0.62] transition-transform duration-700">
+                <div className="absolute bottom-6 left-4 right-4 scale-[0.6] origin-bottom-left group-[.is-active]:scale-[0.62] transition-transform duration-700">
                   <div className="relative w-[100px] h-[100px] rounded-full flex flex-col items-center justify-center">
                     <svg className="absolute inset-0 w-full h-full transform -rotate-90">
                       <circle
@@ -258,14 +258,14 @@ export function PrecisionData() {
               ),
             },
             {
-              label: t("变异性 HRV", "Heart Rate Var."),
+              label: t("心率变异性 HRV", "Heart Rate Var."),
               desc: t(
                 "洞察恢复状态与自主神经平衡",
                 "Insight into recovery & balance",
               ),
               bg: "/03-02.jpg", // Gym training
               ui: (
-                <div className="absolute bottom-6 left-4 right-4 w-full pr-8 group-hover:-translate-y-2 transition-transform duration-700">
+                <div className="absolute bottom-6 left-4 right-4 w-full pr-8 group-[.is-active]:-translate-y-2 transition-transform duration-700">
                   <svg
                     viewBox="0 0 200 60"
                     className="w-full h-16 stroke-[#25FF9A] fill-none drop-shadow-[0_0_6px_rgba(37,255,154,0.6)]"
@@ -283,12 +283,12 @@ export function PrecisionData() {
             {
               label: t("血氧 SpO₂", "Blood Oxygen"),
               desc: t(
-                "观察氧气利用与身体供氧情况",
+                "监测外周血氧饱和度，辅助观察身体供氧状态。",
                 "Observe oxygen utilization",
               ),
               bg: "/03-03.jpg", // Climbing
               ui: (
-                <div className="absolute bottom-6 left-4 right-10 h-[90px] flex items-end justify-between px-2 group-hover:scale-105 transition-transform duration-700">
+                <div className="absolute bottom-6 left-4 right-10 h-[90px] flex items-end justify-between px-2 group-[.is-active]:scale-105 transition-transform duration-700">
                   {[...Array(12)].map((_, idx) => (
                     <div
                       key={idx}
@@ -312,7 +312,7 @@ export function PrecisionData() {
               ),
               bg: "/03-04.jpg", // Calm/meditation
               ui: (
-                <div className="absolute bottom-6 left-4 right-10 bg-black/60 backdrop-blur-md p-3 rounded-xl border border-white/10 flex items-center gap-3 group-hover:-translate-y-2 transition-transform duration-700 shadow-2xl">
+                <div className="absolute bottom-6 left-4 right-10 bg-black/60 backdrop-blur-md p-3 rounded-xl border border-white/10 flex items-center gap-3 group-[.is-active]:-translate-y-2 transition-transform duration-700 shadow-2xl">
                   <div className="w-7 h-7 rounded-full bg-[#25FF9A] text-black flex flex-shrink-0 items-center justify-center shadow-[0_0_10px_rgba(37,255,154,0.5)]">
                     <svg
                       width="14"
@@ -346,7 +346,7 @@ export function PrecisionData() {
               ),
               bg: "/04-1.png",
               ui: (
-                <div className="absolute bottom-6 left-4 right-8 flex justify-between items-end px-2 group-hover:-translate-y-2 transition-transform duration-700">
+                <div className="absolute bottom-6 left-4 right-8 flex justify-between items-end px-2 group-[.is-active]:-translate-y-2 transition-transform duration-700">
                   <div className="bg-black/60 backdrop-blur-md rounded-xl p-3 border border-white/10 flex flex-col items-start min-w-[100px] drop-shadow-2xl">
                     <span className="text-[10px] text-white/80 mb-1 uppercase tracking-wider">
                       {t("睡眠时长", "Duration")}
@@ -366,7 +366,7 @@ export function PrecisionData() {
                   </div>
                   <div className="bg-black/60 backdrop-blur-md rounded-xl p-3 border border-white/10 flex flex-col items-start min-w-[90px] drop-shadow-2xl">
                     <span className="text-[10px] text-white/80 mb-1 uppercase tracking-wider">
-                      {t("深睡比例", "Deep Rate")}
+                      {t("恢复性睡眠", "Deep Rate")}
                     </span>
                     <div className="flex items-baseline space-x-1">
                       <span className="text-xl font-display text-[#e879f9] font-semibold">
@@ -393,41 +393,49 @@ export function PrecisionData() {
 
             return (
               <motion.div
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0.3, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 transition={{ delay: 0.1 * i, duration: 0.6 }}
                 key={i}
                 onMouseEnter={() => setHoveredCard(i)}
                 onMouseLeave={() => setHoveredCard(null)}
-                className={`shrink-0 max-w-[340px] md:max-w-none relative group cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${sizeClass} ${zIndexClass}`}
+                onViewportEnter={() => {
+                  if (
+                    typeof window !== "undefined" &&
+                    window.innerWidth < 768
+                  ) {
+                    setHoveredCard(i);
+                  }
+                }}
+                viewport={{ amount: 0.6, margin: "-30% 0px -30% 0px" }}
+                className={`shrink-0 max-w-[340px] md:max-w-none relative group ${isActive ? "is-active" : ""} cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${sizeClass} ${zIndexClass}`}
               >
-                <div className="absolute inset-0 w-full h-full overflow-hidden rounded-[28px] bg-boom-gray/50 border border-white/20 shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:!-translate-y-6 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+                <div className="absolute inset-0 w-full h-full overflow-hidden rounded-[28px] bg-boom-gray/50 border border-white/20 shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-[.is-active]:!-translate-y-6 group-[.is-active]:shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
                   {/* Playing card decorations */}
-                  <div className="absolute top-6 left-6 flex flex-col items-center opacity-80 z-20 transition-opacity duration-500 group-hover:opacity-100 mix-blend-overlay">
+                  <div className="absolute top-6 left-6 flex flex-col items-center opacity-80 z-20 transition-opacity duration-500 group-[.is-active]:opacity-100 mix-blend-overlay">
                     <span className="font-mono text-base font-bold text-white leading-none">
                       0{i + 1}
                     </span>
                     <span className="text-[10px] text-boom-green mt-1">▲</span>
                   </div>
-                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 mix-blend-overlay">
+                  <div className="absolute top-6 right-6 opacity-0 group-[.is-active]:opacity-100 transition-opacity duration-500 z-20 mix-blend-overlay">
                     <div className="w-10 h-[2px] bg-white/40"></div>
                   </div>
 
                   <div
-                    className={`absolute inset-0 bg-cover bg-center transition-all duration-[1.5s] group-hover:scale-110 ease-[cubic-bezier(0.25,1,0.5,1)] ${isActive ? "opacity-100" : "opacity-60"}`}
+                    className={`absolute inset-0 bg-cover bg-center transition-all duration-[1.5s] group-[.is-active]:scale-110 ease-[cubic-bezier(0.25,1,0.5,1)] ${isActive ? "opacity-100" : "opacity-60"}`}
                     style={{ backgroundImage: `url('${stat.bg}')` }}
                   ></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/60 pointer-events-none transition-opacity duration-500 opacity-90 group-hover:opacity-70"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/60 pointer-events-none transition-opacity duration-500 opacity-90 group-[.is-active]:opacity-70"></div>
 
-                  <div className="absolute bottom-28 md:bottom-32 left-6 right-6 z-10 text-left transition-transform duration-700 group-hover:translate-y-2">
+                  <div className="absolute bottom-28 md:bottom-32 left-6 right-6 z-10 text-left transition-transform duration-700 group-[.is-active]:translate-y-2">
                     <h4
-                      className={`text-white font-display font-medium leading-tight mb-2 uppercase tracking-wide transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${textScale}`}
+                      className={`text-white font-display font-medium leading-tight mb-2 tracking-wide transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${textScale}`}
                     >
                       {stat.label}
                     </h4>
                     <p
-                      className={`text-white/70 font-light leading-relaxed transform transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] opacity-80 group-hover:opacity-100 ${descScale}`}
+                      className={`text-white/70 font-light leading-relaxed transform transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] opacity-80 group-[.is-active]:opacity-100 ${descScale}`}
                     >
                       {stat.desc}
                     </p>
@@ -435,7 +443,7 @@ export function PrecisionData() {
 
                   {stat.ui}
 
-                  <div className="absolute bottom-6 right-6 flex flex-col items-center opacity-80 z-20 transition-opacity duration-500 group-hover:opacity-100 rotate-180 mix-blend-overlay">
+                  <div className="absolute bottom-6 right-6 flex flex-col items-center opacity-80 z-20 transition-opacity duration-500 group-[.is-active]:opacity-100 rotate-180 mix-blend-overlay">
                     <span className="font-mono text-base font-bold text-white leading-none">
                       0{i + 1}
                     </span>

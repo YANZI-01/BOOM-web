@@ -54,7 +54,7 @@ export function RecoveryAlgorithm() {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="relative h-[340px] sm:h-[400px] md:h-[550px] lg:col-span-8"
+          className="relative h-[420px] sm:h-[480px] md:h-[550px] lg:col-span-8"
         >
           <GlassCard className="w-full h-full p-4 sm:p-6 md:p-8 flex flex-col justify-between bg-boom-gray/30 border border-white/10 rounded-[24px] md:rounded-[40px] relative overflow-hidden">
             {/* Text Header (Now higher z-index to overlay image) */}
@@ -85,7 +85,7 @@ export function RecoveryAlgorithm() {
             </div>
 
             {/* Full Custom Supercompensation Curve Chart */}
-            <div className="absolute inset-0 top-[15%] md:top-1/4 left-0 w-full h-[85%] md:h-3/4 overflow-x-auto overflow-y-hidden overscroll-x-contain md:overflow-visible pointer-events-auto select-none z-20 scrollbar-hide">
+            <div className="absolute inset-0 top-[28%] md:top-1/4 left-0 w-full h-[72%] md:h-3/4 overflow-x-auto overflow-y-hidden overscroll-x-contain md:overflow-visible pointer-events-auto select-none z-20 scrollbar-hide">
               <div className="min-w-[500px] md:min-w-0 w-full h-full relative px-4">
                 <svg
                   viewBox="0 0 500 300"

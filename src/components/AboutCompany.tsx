@@ -5,22 +5,24 @@ import { useLanguage } from "../context/LanguageContext";
 export function AboutCompany() {
   const { t, language } = useLanguage();
 
+  const [activeVisionCard, setActiveVisionCard] = useState<number | null>(null);
+
   // Generate random dots for background effect extending outward
   const dots = useMemo(() => {
-    return Array.from({ length: 90 }).map((_, i) => {
+    return Array.from({ length: 200 }).map((_, i) => {
       // Random angle in full circle
       const angle = Math.random() * Math.PI * 2;
       // Use square root for more uniform spread within area, max radius 450px
       const maxRadius = 450;
       const radius = Math.sqrt(Math.random()) * maxRadius;
-      
+
       const x = Math.cos(angle) * radius;
       const y = Math.sin(angle) * radius;
-      
+
       // Dots further out have less opacity
       const distanceRatio = radius / maxRadius;
       const maxOpacity = Math.max(0.1, 1 - distanceRatio) * 0.7; // Central dots up to 0.7 opacity
-      
+
       return {
         x,
         y,
@@ -99,7 +101,7 @@ export function AboutCompany() {
                   duration: dot.duration,
                   delay: dot.delay,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               />
             ))}
@@ -112,19 +114,53 @@ export function AboutCompany() {
               viewport={{ once: true }}
               transition={{ duration: 1, ease: "easeOut" }}
             >
-              <div className="flex flex-col items-center gap-3 text-xl md:text-2xl font-light leading-relaxed tracking-wide">
-                <span className="font-medium text-2xl md:text-3xl text-white">
-                  {t(
-                    "熵减纪元",
-                    "Negentropy Era",
+              <div className="flex flex-col items-center gap-8 text-base md:text-lg lg:text-xl font-light leading-relaxed tracking-wide max-w-3xl mx-auto text-[#86868b]">
+                <p className="text-justify md:text-center">
+                  <span className="font-medium text-white">
+                    {language === "zh"
+                      ? "熵减纪元（Entropy Era）"
+                      : "Entropy Era "}
+                  </span>
+                  {language === "zh" ? (
+                    <>
+                      是一家致力于
+                      <span className="text-white">人类表现优化</span>
+                      的科技公司，专注于持续生理监测、人体状态建模与
+                      <span className="text-white"> AI Coach系统</span>
+                      。我们希望融合多学科交叉与人工智能，帮助每个人持续优化自身状态，持续对抗人体熵增，不断提升生命质量与人体表现，最终构建每个人
+                      <span className="text-white">
+                        专属的 Human Operating System
+                      </span>
+                      ，共同开启属于全人类的熵减纪元。
+                    </>
+                  ) : (
+                    <>
+                      is a technology company dedicated to{" "}
+                      <span className="text-white">
+                        human performance optimization
+                      </span>
+                      , focusing on continuous physiological monitoring, human
+                      state modeling, and{" "}
+                      <span className="text-white">AI Coach systems</span>. We
+                      hope to integrate interdisciplinary intersections and
+                      artificial intelligence to help everyone continuously
+                      optimize their state, continuously combat human entropy
+                      increase, continuously improve the quality of life and
+                      human performance, and ultimately build a{" "}
+                      <span className="text-white">
+                        Human Operating System exclusive to everyone
+                      </span>
+                      , jointly opening an entropy reduction era belonging to
+                      all mankind.
+                    </>
                   )}
-                </span>
-                <span className="bg-clip-text text-transparent bg-[linear-gradient(110deg,#86868b_20%,#ffffff_50%,#86868b_80%)] bg-[length:200%_auto] animate-shimmer">
+                </p>
+                <p className="italic text-white/80 font-medium text-sm md:text-base text-center">
                   {t(
-                    "致力于人类表现优化",
-                    "Dedicated to human performance optimization",
+                    "“生命以负熵为生。”—— 薛定谔，《生命是什么？》",
+                    '"Life feeds on negative entropy." — Erwin Schrödinger, What is Life?',
                   )}
-                </span>
+                </p>
               </div>
             </motion.div>
           </div>
@@ -213,8 +249,8 @@ export function AboutCompany() {
                   </p>
                   <p>
                     {t(
-                      "BOOM 正在将顶级教练团队的能力转化为 AI，让每个人都拥有属于自己的健康导航系统，在运动、恢复、营养、睡眠、心理与健康管理中，持续获得指导。",
-                      "BOOM is transforming the capabilities of top coaching teams into AI, giving everyone their own health navigation system, providing continuous guidance in training, recovery, nutrition, sleep, psychology, and health management.",
+                      "BOOM 正在将顶级教练团队的判断能力融入 AI，让每个人都拥有属于自己的健康导航系统，在运动、恢复、营养、睡眠、心理与健康管理中，持续获得指导。",
+                      "BOOM is integrating the judgment capabilities of top coaching teams into AI, giving everyone their own health navigation system, providing continuous guidance in training, recovery, nutrition, sleep, psychology, and health management.",
                     )}
                   </p>
                 </div>
@@ -288,33 +324,43 @@ export function AboutCompany() {
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-[5px] mt-8 lg:-mt-[30px] w-full relative z-20">
               {/* Image 1: Spirit */}
               <motion.div
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0.3, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ margin: "-20% 0px -20% 0px", amount: 0.4 }}
+                onViewportEnter={() => {
+                  if (
+                    typeof window !== "undefined" &&
+                    window.innerWidth < 768
+                  ) {
+                    setActiveVisionCard(0);
+                  }
+                }}
                 transition={{ delay: 0.1 }}
-                className="relative aspect-[2/3] overflow-hidden rounded-3xl group shadow-2xl bg-black"
+                onMouseEnter={() => setActiveVisionCard(0)}
+                onMouseLeave={() => setActiveVisionCard(null)}
+                className={`relative aspect-[2/3] overflow-hidden rounded-3xl group shadow-2xl bg-black ${activeVisionCard === 0 ? "is-active" : ""}`}
               >
                 <img
                   src="/brand02-1.png"
                   alt="Spirit"
-                  className="absolute inset-0 w-full h-full object-cover transition-all duration-700 blur-[0.5px] group-hover:blur-none group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition-all duration-700 blur-[0.5px] group-hover:blur-none group-hover:scale-105 group-[.is-active]:blur-none group-[.is-active]:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/10 transition-all duration-500"></div>
+                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/10 group-[.is-active]:bg-black/10 transition-all duration-500"></div>
 
                 <div className="absolute top-6 right-6 text-right">
-                  <span className="text-[9px] font-mono text-white/50 uppercase tracking-[0.25em] block group-hover:text-white transition-colors">
+                  <span className="text-[9px] font-mono text-white/50 uppercase tracking-[0.25em] block group-hover:text-white group-[.is-active]:text-white transition-colors">
                     BOOM.SYSTEM
                   </span>
                 </div>
 
-                <div className="absolute bottom-8 left-6 right-6 flex flex-col items-start translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  <span className="text-[10px] text-white/60 font-mono tracking-[0.2em] mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                <div className="absolute bottom-8 left-6 right-6 flex flex-col items-start translate-y-4 group-hover:translate-y-0 group-[.is-active]:translate-y-0 transition-transform duration-500">
+                  <span className="text-[10px] text-white/60 font-mono tracking-[0.2em] mb-4 opacity-0 group-hover:opacity-100 group-[.is-active]:opacity-100 transition-opacity duration-500 delay-100">
                     {t("维度 01", "DIMENSION 01")}
                   </span>
-                  <h4 className="text-sm lg:text-base font-display font-light text-white uppercase tracking-wider -mb-[1px] opacity-80 group-hover:opacity-100 transition-opacity">
+                  <h4 className="text-sm lg:text-base font-display font-light text-white uppercase tracking-wider -mb-[1px] opacity-80 group-hover:opacity-100 group-[.is-active]:opacity-100 transition-opacity">
                     SPIRIT
                   </h4>
-                  <span className="text-sm font-light text-boom-text-dim tracking-[0.3em] uppercase opacity-80 group-hover:opacity-100 group-hover:text-white transition-all duration-300">
+                  <span className="text-sm font-light text-boom-text-dim tracking-[0.3em] uppercase opacity-80 group-hover:opacity-100 group-hover:text-white group-[.is-active]:opacity-100 group-[.is-active]:text-white transition-all duration-300">
                     {t("精神", "Spirit")}
                   </span>
                 </div>
@@ -322,33 +368,43 @@ export function AboutCompany() {
 
               {/* Image 2: Physiology */}
               <motion.div
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0.3, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ margin: "-20% 0px -20% 0px", amount: 0.4 }}
+                onViewportEnter={() => {
+                  if (
+                    typeof window !== "undefined" &&
+                    window.innerWidth < 768
+                  ) {
+                    setActiveVisionCard(1);
+                  }
+                }}
                 transition={{ delay: 0.2 }}
-                className="relative aspect-[2/3] overflow-hidden rounded-3xl group shadow-2xl bg-black"
+                onMouseEnter={() => setActiveVisionCard(1)}
+                onMouseLeave={() => setActiveVisionCard(null)}
+                className={`relative aspect-[2/3] overflow-hidden rounded-3xl group shadow-2xl bg-black ${activeVisionCard === 1 ? "is-active" : ""}`}
               >
                 <img
-                  src="/brand02-2.jpg"
+                  src="/brand02-2-1.jpg"
                   alt="Physiology"
-                  className="absolute inset-0 w-full h-full object-cover transition-all duration-700 blur-[0.5px] group-hover:blur-none group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition-all duration-700 blur-[0.5px] group-hover:blur-none group-hover:scale-105 group-[.is-active]:blur-none group-[.is-active]:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/10 transition-all duration-500"></div>
+                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/10 group-[.is-active]:bg-black/10 transition-all duration-500"></div>
 
                 <div className="absolute top-6 right-6 text-right">
-                  <span className="text-[9px] font-mono text-white/50 uppercase tracking-[0.25em] block group-hover:text-white transition-colors">
+                  <span className="text-[9px] font-mono text-white/50 uppercase tracking-[0.25em] block group-hover:text-white group-[.is-active]:text-white transition-colors">
                     BOOM.SYSTEM
                   </span>
                 </div>
 
-                <div className="absolute bottom-8 left-6 right-6 flex flex-col items-start translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  <span className="text-[10px] text-white/60 font-mono tracking-[0.2em] mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                <div className="absolute bottom-8 left-6 right-6 flex flex-col items-start translate-y-4 group-hover:translate-y-0 group-[.is-active]:translate-y-0 transition-transform duration-500">
+                  <span className="text-[10px] text-white/60 font-mono tracking-[0.2em] mb-4 opacity-0 group-hover:opacity-100 group-[.is-active]:opacity-100 transition-opacity duration-500 delay-100">
                     {t("维度 02", "DIMENSION 02")}
                   </span>
-                  <h4 className="text-sm lg:text-base font-display font-light text-white uppercase tracking-wider -mb-[1px] opacity-80 group-hover:opacity-100 transition-opacity">
+                  <h4 className="text-sm lg:text-base font-display font-light text-white uppercase tracking-wider -mb-[1px] opacity-80 group-hover:opacity-100 group-[.is-active]:opacity-100 transition-opacity">
                     PHYSICAL
                   </h4>
-                  <span className="text-sm font-light text-boom-text-dim tracking-[0.3em] uppercase opacity-80 group-hover:opacity-100 group-hover:text-white transition-all duration-300">
+                  <span className="text-sm font-light text-boom-text-dim tracking-[0.3em] uppercase opacity-80 group-hover:opacity-100 group-hover:text-white group-[.is-active]:opacity-100 group-[.is-active]:text-white transition-all duration-300">
                     {t("生理", "Physiology")}
                   </span>
                 </div>
@@ -356,33 +412,43 @@ export function AboutCompany() {
 
               {/* Image 3: Intellect */}
               <motion.div
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0.3, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ margin: "-20% 0px -20% 0px", amount: 0.4 }}
+                onViewportEnter={() => {
+                  if (
+                    typeof window !== "undefined" &&
+                    window.innerWidth < 768
+                  ) {
+                    setActiveVisionCard(2);
+                  }
+                }}
                 transition={{ delay: 0.3 }}
-                className="relative aspect-[2/3] overflow-hidden rounded-3xl group shadow-2xl bg-black"
+                onMouseEnter={() => setActiveVisionCard(2)}
+                onMouseLeave={() => setActiveVisionCard(null)}
+                className={`relative aspect-[2/3] overflow-hidden rounded-3xl group shadow-2xl bg-black ${activeVisionCard === 2 ? "is-active" : ""}`}
               >
                 <img
                   src="/brand02-3.jpg"
                   alt="Intellect"
-                  className="absolute inset-0 w-full h-full object-cover transition-all duration-700 blur-[0.5px] group-hover:blur-none group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition-all duration-700 blur-[0.5px] group-hover:blur-none group-hover:scale-105 group-[.is-active]:blur-none group-[.is-active]:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/10 transition-all duration-500"></div>
+                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/10 group-[.is-active]:bg-black/10 transition-all duration-500"></div>
 
                 <div className="absolute top-6 right-6 text-right">
-                  <span className="text-[9px] font-mono text-white/50 uppercase tracking-[0.25em] block group-hover:text-white transition-colors">
+                  <span className="text-[9px] font-mono text-white/50 uppercase tracking-[0.25em] block group-hover:text-white group-[.is-active]:text-white transition-colors">
                     BOOM.SYSTEM
                   </span>
                 </div>
 
-                <div className="absolute bottom-8 left-6 right-6 flex flex-col items-start translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  <span className="text-[10px] text-white/60 font-mono tracking-[0.2em] mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                <div className="absolute bottom-8 left-6 right-6 flex flex-col items-start translate-y-4 group-hover:translate-y-0 group-[.is-active]:translate-y-0 transition-transform duration-500">
+                  <span className="text-[10px] text-white/60 font-mono tracking-[0.2em] mb-4 opacity-0 group-hover:opacity-100 group-[.is-active]:opacity-100 transition-opacity duration-500 delay-100">
                     {t("维度 03", "DIMENSION 03")}
                   </span>
-                  <h4 className="text-sm lg:text-base font-display font-light text-white uppercase tracking-wider -mb-[1px] opacity-80 group-hover:opacity-100 transition-opacity">
+                  <h4 className="text-sm lg:text-base font-display font-light text-white uppercase tracking-wider -mb-[1px] opacity-80 group-hover:opacity-100 group-[.is-active]:opacity-100 transition-opacity">
                     MIND
                   </h4>
-                  <span className="text-sm font-light text-boom-text-dim tracking-[0.3em] uppercase opacity-80 group-hover:opacity-100 group-hover:text-white transition-all duration-300">
+                  <span className="text-sm font-light text-boom-text-dim tracking-[0.3em] uppercase opacity-80 group-hover:opacity-100 group-hover:text-white group-[.is-active]:opacity-100 group-[.is-active]:text-white transition-all duration-300">
                     {t("智力", "Intellect")}
                   </span>
                 </div>
@@ -390,33 +456,43 @@ export function AboutCompany() {
 
               {/* Image 4: Relationships */}
               <motion.div
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0.3, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ margin: "-20% 0px -20% 0px", amount: 0.4 }}
+                onViewportEnter={() => {
+                  if (
+                    typeof window !== "undefined" &&
+                    window.innerWidth < 768
+                  ) {
+                    setActiveVisionCard(3);
+                  }
+                }}
                 transition={{ delay: 0.4 }}
-                className="relative aspect-[2/3] overflow-hidden rounded-3xl group shadow-2xl bg-black"
+                onMouseEnter={() => setActiveVisionCard(3)}
+                onMouseLeave={() => setActiveVisionCard(null)}
+                className={`relative aspect-[2/3] overflow-hidden rounded-3xl group shadow-2xl bg-black ${activeVisionCard === 3 ? "is-active" : ""}`}
               >
                 <img
                   src="/brand02-4.jpg"
                   alt="Relationships"
-                  className="absolute inset-0 w-full h-full object-cover transition-all duration-700 blur-[0.5px] group-hover:blur-none group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition-all duration-700 blur-[0.5px] group-hover:blur-none group-hover:scale-105 group-[.is-active]:blur-none group-[.is-active]:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/10 transition-all duration-500"></div>
+                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/10 group-[.is-active]:bg-black/10 transition-all duration-500"></div>
 
                 <div className="absolute top-6 right-6 text-right">
-                  <span className="text-[9px] font-mono text-white/50 uppercase tracking-[0.25em] block group-hover:text-white transition-colors">
+                  <span className="text-[9px] font-mono text-white/50 uppercase tracking-[0.25em] block group-hover:text-white group-[.is-active]:text-white transition-colors">
                     BOOM.SYSTEM
                   </span>
                 </div>
 
-                <div className="absolute bottom-8 left-6 right-6 flex flex-col items-start translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  <span className="text-[10px] text-white/60 font-mono tracking-[0.2em] mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                <div className="absolute bottom-8 left-6 right-6 flex flex-col items-start translate-y-4 group-hover:translate-y-0 group-[.is-active]:translate-y-0 transition-transform duration-500">
+                  <span className="text-[10px] text-white/60 font-mono tracking-[0.2em] mb-4 opacity-0 group-hover:opacity-100 group-[.is-active]:opacity-100 transition-opacity duration-500 delay-100">
                     {t("维度 04", "DIMENSION 04")}
                   </span>
-                  <h4 className="text-sm lg:text-base font-display font-light text-white uppercase tracking-wider -mb-[1px] opacity-80 group-hover:opacity-100 transition-opacity">
+                  <h4 className="text-sm lg:text-base font-display font-light text-white uppercase tracking-wider -mb-[1px] opacity-80 group-hover:opacity-100 group-[.is-active]:opacity-100 transition-opacity">
                     SOCIAL
                   </h4>
-                  <span className="text-sm font-light text-boom-text-dim tracking-[0.3em] uppercase opacity-80 group-hover:opacity-100 group-hover:text-white transition-all duration-300">
+                  <span className="text-sm font-light text-boom-text-dim tracking-[0.3em] uppercase opacity-80 group-hover:opacity-100 group-hover:text-white group-[.is-active]:opacity-100 group-[.is-active]:text-white transition-all duration-300">
                     {t("关系", "Relationships")}
                   </span>
                 </div>
@@ -424,33 +500,43 @@ export function AboutCompany() {
 
               {/* Image 5: Emotions */}
               <motion.div
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0.3, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ margin: "-20% 0px -20% 0px", amount: 0.4 }}
+                onViewportEnter={() => {
+                  if (
+                    typeof window !== "undefined" &&
+                    window.innerWidth < 768
+                  ) {
+                    setActiveVisionCard(4);
+                  }
+                }}
                 transition={{ delay: 0.5 }}
-                className="relative aspect-[2/3] overflow-hidden rounded-3xl group shadow-2xl md:col-span-1 lg:col-span-1 bg-black"
+                onMouseEnter={() => setActiveVisionCard(4)}
+                onMouseLeave={() => setActiveVisionCard(null)}
+                className={`relative aspect-[2/3] overflow-hidden rounded-3xl group shadow-2xl md:col-span-1 lg:col-span-1 bg-black ${activeVisionCard === 4 ? "is-active" : ""}`}
               >
                 <img
                   src="/brand02-5.jpg"
                   alt="Emotions"
-                  className="absolute inset-0 w-full h-full object-cover transition-all duration-700 blur-[0.5px] group-hover:blur-none group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition-all duration-700 blur-[0.5px] group-hover:blur-none group-hover:scale-105 group-[.is-active]:blur-none group-[.is-active]:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/10 transition-all duration-500"></div>
+                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/10 group-[.is-active]:bg-black/10 transition-all duration-500"></div>
 
                 <div className="absolute top-6 right-6 text-right">
-                  <span className="text-[9px] font-mono text-white/50 uppercase tracking-[0.25em] block group-hover:text-white transition-colors">
+                  <span className="text-[9px] font-mono text-white/50 uppercase tracking-[0.25em] block group-hover:text-white group-[.is-active]:text-white transition-colors">
                     BOOM.SYSTEM
                   </span>
                 </div>
 
-                <div className="absolute bottom-8 left-6 right-6 flex flex-col items-start translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  <span className="text-[10px] text-white/60 font-mono tracking-[0.2em] mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                <div className="absolute bottom-8 left-6 right-6 flex flex-col items-start translate-y-4 group-hover:translate-y-0 group-[.is-active]:translate-y-0 transition-transform duration-500">
+                  <span className="text-[10px] text-white/60 font-mono tracking-[0.2em] mb-4 opacity-0 group-hover:opacity-100 group-[.is-active]:opacity-100 transition-opacity duration-500 delay-100">
                     {t("维度 05", "DIMENSION 05")}
                   </span>
-                  <h4 className="text-sm lg:text-base font-display font-light text-white uppercase tracking-wider -mb-[1px] opacity-80 group-hover:opacity-100 transition-opacity">
+                  <h4 className="text-sm lg:text-base font-display font-light text-white uppercase tracking-wider -mb-[1px] opacity-80 group-hover:opacity-100 group-[.is-active]:opacity-100 transition-opacity">
                     EMOTION
                   </h4>
-                  <span className="text-sm font-light text-boom-text-dim tracking-[0.3em] uppercase opacity-80 group-hover:opacity-100 group-hover:text-white transition-all duration-300">
+                  <span className="text-sm font-light text-boom-text-dim tracking-[0.3em] uppercase opacity-80 group-hover:opacity-100 group-hover:text-white group-[.is-active]:opacity-100 group-[.is-active]:text-white transition-all duration-300">
                     {t("情绪", "Emotions")}
                   </span>
                 </div>
