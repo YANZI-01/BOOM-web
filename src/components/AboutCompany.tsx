@@ -116,44 +116,9 @@ export function AboutCompany() {
             >
               <div className="flex flex-col items-center gap-8 text-base md:text-lg lg:text-xl font-light leading-relaxed tracking-wide max-w-3xl mx-auto text-[#86868b]">
                 <p className="text-justify md:text-center">
-                  <span className="font-medium text-white">
-                    {language === "zh"
-                      ? "熵减纪元（Entropy Era）"
-                      : "Entropy Era "}
-                  </span>
-                  {language === "zh" ? (
-                    <>
-                      是一家致力于
-                      <span className="text-white">人类表现优化</span>
-                      的科技公司，专注于持续生理监测、人体状态建模与
-                      <span className="text-white"> AI Coach系统</span>
-                      。我们希望融合多学科交叉与人工智能，帮助每个人持续优化自身状态，持续对抗人体熵增，不断提升生命质量与人体表现，最终构建每个人
-                      <span className="text-white">
-                        专属的 Human Operating System
-                      </span>
-                      ，共同开启属于全人类的熵减纪元。
-                    </>
-                  ) : (
-                    <>
-                      is a technology company dedicated to{" "}
-                      <span className="text-white">
-                        human performance optimization
-                      </span>
-                      , focusing on continuous physiological monitoring, human
-                      state modeling, and{" "}
-                      <span className="text-white">AI Coach systems</span>. We
-                      hope to integrate interdisciplinary intersections and
-                      artificial intelligence to help everyone continuously
-                      optimize their state, continuously combat human entropy
-                      increase, continuously improve the quality of life and
-                      human performance, and ultimately build a{" "}
-                      <span className="text-white">
-                        Human Operating System exclusive to everyone
-                      </span>
-                      , jointly opening an entropy reduction era belonging to
-                      all mankind.
-                    </>
-                  )}
+                  {language === "zh"
+                    ? "熵减纪元（Entropy Era）是一家致力于人类表现优化的科技公司，专注于持续生理监测、人体状态建模与 AI Coach系统。我们希望融合多学科交叉与人工智能，帮助每个人持续优化自身状态，持续对抗人体熵增，不断提升生命质量与人体表现，最终构建每个人专属的 Human Operating System，共同开启属于全人类的熵减纪元。"
+                    : "Entropy Era is a technology company dedicated to human performance optimization, focusing on continuous physiological monitoring, human state modeling, and AI Coach systems. We hope to integrate interdisciplinary intersections and artificial intelligence to help everyone continuously optimize their state, continuously combat human entropy increase, continuously improve the quality of life and human performance, and ultimately build a Human Operating System exclusive to everyone, jointly opening an entropy reduction era belonging to all mankind."}
                 </p>
                 <p className="italic text-white/80 font-medium text-sm md:text-base text-center">
                   {t(
