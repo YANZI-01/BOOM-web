@@ -357,7 +357,7 @@ export function WithoutBoom() {
             <div className="mb-10 text-left">
               <h3 className="text-2xl font-medium text-white/40 group-hover:text-white group-[.is-active]:text-white transition-colors duration-500 mb-3">WITHOUT BOOM</h3>
               <p className="text-white/30 group-hover:text-white/80 group-[.is-active]:text-white/80 font-light leading-relaxed transition-colors duration-500">
-                {t('凭感觉练，容易错过最佳时机。过早会导致疲劳累积，过晚则错过适应窗口。', 'Training by feel, it is easy to miss the optimal window. Early training leads to fatigue, late training misses the adaptation window.')}
+                {t('即使已有运动手表，你仍能看到配速、功率和训练负荷，但下一次\n训练是否仍该按计划进行，往往还需要自己判断。', 'Even with a sports watch, you can still see pace, power, and training load, but deciding whether the next training should still proceed as planned often requires your own judgment.')}
               </p>
             </div>
 
@@ -367,11 +367,11 @@ export function WithoutBoom() {
                 <div className="flex justify-between items-center mb-2">
                   <div className="flex items-center gap-2">
                     <AlertCircle className="w-4 h-4 text-[#f97316] transition-colors duration-500" />
-                    <span className="font-medium text-sm text-[#f97316] transition-colors duration-500">过早刺激 (Too Early)</span>
+                    <span className="font-medium text-sm text-[#f97316] transition-colors duration-500">{t('记录已经发生的训练', 'Recording past training')}</span>
                   </div>
-                  <div className="text-[10px] text-[#f97316] bg-[#f97316]/10 group-hover:bg-[#f97316]/15 group-[.is-active]:bg-[#f97316]/15 border border-[#f97316]/20 px-2 py-1 rounded transition-colors duration-500">Error</div>
+                  <div className="text-[10px] text-[#f97316] bg-[#f97316]/10 group-hover:bg-[#f97316]/15 group-[.is-active]:bg-[#f97316]/15 border border-[#f97316]/20 px-2 py-1 rounded transition-colors duration-500">{t('已记录', 'Recorded')}</div>
                 </div>
-                <p className="text-xs lg:text-sm text-white/30 group-hover:text-white/70 group-[.is-active]:text-white/70 transition-colors duration-500">恢复不足，疲劳持续累积，增加受伤风险并降低训练表现。</p>
+                <p className="text-xs lg:text-sm text-white/30 group-hover:text-white/70 group-[.is-active]:text-white/70 transition-colors duration-500">{t('配速、功率、GPS与训练负荷，告诉你这次训练发生了什么。', 'Pace, power, GPS, and training load tell you what happened in this training.')}</p>
               </div>
               
               <div className="flex justify-center -my-2 relative z-10">
@@ -384,11 +384,11 @@ export function WithoutBoom() {
                 <div className="flex justify-between items-center mb-2">
                   <div className="flex items-center gap-2">
                     <Clock className="w-4 h-4 text-[#f97316] transition-colors duration-500" />
-                    <span className="font-medium text-sm text-[#f97316] transition-colors duration-500">过晚刺激 (Too Late)</span>
+                    <span className="font-medium text-sm text-[#f97316] transition-colors duration-500">{t('下一步仍需自己判断', 'Next step still requires self-judgment')}</span>
                   </div>
-                  <div className="text-[10px] text-[#f97316] bg-[#f97316]/10 group-hover:bg-[#f97316]/15 group-[.is-active]:bg-[#f97316]/15 border border-[#f97316]/20 px-2 py-1 rounded transition-colors duration-500">Missed</div>
+                  <div className="text-[10px] text-[#f97316] bg-[#f97316]/10 group-hover:bg-[#f97316]/15 group-[.is-active]:bg-[#f97316]/15 border border-[#f97316]/20 px-2 py-1 rounded transition-colors duration-500">{t('待判断', 'Uncertain')}</div>
                 </div>
-                <p className="text-xs lg:text-sm text-white/30 group-hover:text-white/70 group-[.is-active]:text-white/70 transition-colors duration-500">错过超量恢复窗口，身体已退回基线，训练效果大打折扣。</p>
+                <p className="text-xs lg:text-sm text-white/30 group-hover:text-white/70 group-[.is-active]:text-white/70 transition-colors duration-500">{t('身体状态持续变化，原定训练未必仍然适合今天。', 'The body state continues to change, and the planned training may not still be suitable for today.')}</p>
               </div>
             </div>
           </motion.div>
@@ -412,7 +412,7 @@ export function WithoutBoom() {
                 <div className="mb-10 text-left relative z-10">
               <h3 className="text-2xl font-medium text-white mb-3">WITH BOOM</h3>
               <p className="text-white/60 font-light leading-relaxed">
-                {t('科学判断时机，刚刚好。身体准备就绪，让你在超量恢复的顶峰进行下一次训练。', 'Scientific timing, just right. Your body is ready, allowing you to train at the peak of supercompensation.')}
+                {t('BOOM持续感知训练之外的身体变化，并将状态变化转化为下一次训练决策。', 'BOOM continuously senses body changes outside of training and translates these state changes into the next training decision.')}
               </p>
             </div>
 
@@ -422,12 +422,12 @@ export function WithoutBoom() {
                  <div className="flex justify-between items-center mb-2">
                    <div className="flex items-center gap-2 text-white">
                      <CheckCircle2 className="w-4 h-4 text-[#a3e635]" />
-                     <span className="font-medium text-sm">充分恢复 ({t('Fully Recovered', 'Fully Recovered')})</span>
+                     <span className="font-medium text-sm">{t('持续感知身体变化', 'Continuously sensing body changes')}</span>
                    </div>
-                   <div className="text-[10px] bg-white/10 px-2 py-1 rounded text-[#a3e635]">100%</div>
+                   <div className="text-[10px] bg-white/10 px-2 py-1 rounded text-[#a3e635]">{t('实时', 'Live')}</div>
                  </div>
                  <p className="text-xs lg:text-sm text-white/70">
-                   {t('疲劳完全消除，身体状态回到最佳水平，准备好迎接下一次刺激。', 'Fatigue is completely eliminated, physical state returns above optimal level, ready for the next stimulus.')}
+                   {t('融合连续生理信号、睡眠、生活压力与主观感受，动态更新当前状态。', 'Integrating continuous physiological signals, sleep, life stress, and subjective feelings to dynamically update the current state.')}
                  </p>
                </div>
                
@@ -441,19 +441,19 @@ export function WithoutBoom() {
                   <div className="flex justify-between items-center mb-2">
                     <div className="flex items-center gap-2 text-white">
                       <Zap className="w-4 h-4 text-[#a3e635]" />
-                      <span className="font-medium text-sm">最佳训练时机 ({t('Optimal Timing', 'Optimal Timing')})</span>
+                      <span className="font-medium text-sm">{t('给出下一次训练决策', 'Providing the next training decision')}</span>
                     </div>
-                    <div className="text-[10px] bg-white/10 px-2 py-1 rounded text-[#a3e635]">Hit</div>
+                    <div className="text-[10px] bg-white/10 px-2 py-1 rounded text-[#a3e635]">{t('决策', 'Action')}</div>
                   </div>
                  <p className="text-xs lg:text-sm text-white/70">
-                   {t('此时进行训练，能获得最大提升，实现体能的跃迁。', 'Training at this moment yields the maximum improvement, achieving a leap in fitness.')}
+                   {t('超量复黄金窗口 18:00一22:00，训练建议按原计划执行', 'Supercompensation golden window 18:00-22:00, training recommendations carried out as planned')}
                  </p>
                </div>
-             </div>
-             </div>
-             </div>
-           </motion.div>
-         </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
 
         <motion.div 
            initial={{ opacity: 0, y: 40 }}
